@@ -10,6 +10,8 @@
   "mainInput": "YoApp",
   "mainOutput": "main",
   "dependencies": {
+    "es6-promise": "^2.0.1",
+    "object-assign": "^2.0.0",
     "react": "~0.12.2",
     "react-bootstrap": "^0.16.1",
     "react-router": "^0.12.4",

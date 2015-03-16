@@ -1,0 +1,15 @@
+AtlasPivot - root component
+	PivotToolBar
+	PivotSideBar
+		AddItemAction	
+		FeatureListFilter
+		FeatureList
+			FeatureLink*
+		AddFeatureAction
+	FeatureDetail
+		FeatureDetailToolBar
+			FeatureDetailRepresentationSelector			
+		ItemList
+			ItemLink*
+		ItemDetail
+

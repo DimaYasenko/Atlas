@@ -29,9 +29,10 @@ var Foo = require('./Foo'),
     AboutUs = require('./AboutUs'),
     Support = require('./Support'),
     GetDemo = require('./GetDemo'),
-    TryForFree = require('./TryForFree'),
+    TryForFree = require('./AtlasPivot'),
     LogIn = require('./LogIn'),
-    Pricing = require('./Pricing');
+    Pricing = require('./Pricing'),
+    Fake = require('./Fake');   
 
 var imageURL = require('../../images/yeoman.png');
 
@@ -66,7 +67,8 @@ var YoApp = React.createClass({
           </Nav>            
         </Navbar>  
 
-        <div className="container">
+      
+        <div>
           <TransitionGroup component="div" transitionName="example">
             <RouteHandler key={name}/>
           </TransitionGroup>
