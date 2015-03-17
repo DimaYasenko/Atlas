@@ -19,7 +19,7 @@ module.exports = {
   devtool: false,
   entry: [
       'webpack/hot/only-dev-server',
-      './src/scripts/components/YoApp.js'
+      './src/scripts/components/AtlasPivot.js'
   ],
 
   stats: {
@@ -43,7 +43,7 @@ module.exports = {
     loaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'react-hot!jsx-loader?harmony'
+      loader: 'react-hot!babel-loader'
     }, {
       test: /\.css$/,
       loader: 'style-loader!css-loader'

@@ -1,9 +1,15 @@
-function dataProps(s0, s1) {
+'use strict';
+
+
+var dataProps, dataArray, dataObj, data, makeObj, prop, indx, isArray;
+
+
+dataProps = function(s0, s1) {
 	var enterKeys = [],
 		exitKeys = [],
 		updateKeys = [];
 
-	for (var k in s1) {
+	for (let k in s1) {
 		if (k in s0) {
 			updateKeys.push(k);
 		} else {
@@ -11,7 +17,7 @@ function dataProps(s0, s1) {
 		}
 	}
 
-	for (var k in s0) {
+	for (let k in s0) {
 		if (! (k in s1)) {
 			exitKeys.push(k);
 		}
@@ -22,9 +28,9 @@ function dataProps(s0, s1) {
 		exit: exitKeys,
 		update: updateKeys
 	};
-}
+};
 
-function dataArray(s0, s1) {
+dataArray = function(s0, s1) {
 	var idx = dataProps(s0, s1);
 	return {
 		enter: function() {
@@ -36,10 +42,10 @@ function dataArray(s0, s1) {
 		update: function() {
 			return idx.update.map(indx(s1));
 		}
-	}
-}
+	};
+};
 
-function dataObj(s0, s1) {
+dataObj = function(s0, s1) {
 	var idx = dataProps(s0, s1);
 	return {
 		enter: function() {
@@ -52,15 +58,15 @@ function dataObj(s0, s1) {
 		update: function() {
 			return makeObj(idx.update, s1);
 		}
-	}
-}
+	};
+};
 
 
-function data(s0, s1) {
+data = function(s0, s1) {
 	return ( (isArray(s0) && isArray(s1))? dataArray : dataObj)(s0, s1);
-}
+};
 
-function makeObj(props, values) {
+makeObj = function(props, values) {
 	var res = {},
 				i,
 				key;
@@ -69,34 +75,23 @@ function makeObj(props, values) {
 		res[key] = values[key];
 	}
 	return res;
-}
+};
 
 
-function prop(nm) {
+prop = function(nm) {
 	return function(obj) {
 		return obj[nm];
 	};
-}
+};
 
-function indx(obj) {
+indx = function(obj) {
 	return function(prop) {
 		return obj[prop];
 	};
-}
-
-function isArray(obj) {
-	return Object.prototype.toString.call(obj) === '[object Array]';
-}
-
-
-var user1 = {
-	name: 'Вася',
-	age: 21
 };
 
-var user2 = {
-	name: 'Петя',
-	last: 'Пупкин'
+isArray = function(obj) {
+	return Object.prototype.toString.call(obj) === '[object Array]';
 };
 
 module.exports = data;

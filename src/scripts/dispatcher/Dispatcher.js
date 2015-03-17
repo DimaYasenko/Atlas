@@ -1,10 +1,11 @@
-var Promise = require('es6-promise').Promise;
-var assign = require('object-assign');
+'use strict';
+import { Promise } from 'es6-promise';
+import assign from 'object-assign';
 
 var _callbacks = [];
 var _promises = [];
 
-var Dispatcher = function() {};
+const Dispatcher = function() {};
 Dispatcher.prototype = assign({}, Dispatcher.prototype, {
 
   /**
@@ -12,7 +13,7 @@ Dispatcher.prototype = assign({}, Dispatcher.prototype, {
    * @param {function} callback The callback to be registered.
    * @return {number} The index of the callback within the _callbacks array.
    */
-  register: function(callback) {
+  register (callback) {
     _callbacks.push(callback);
     return _callbacks.length - 1; // index
   },
@@ -21,7 +22,7 @@ Dispatcher.prototype = assign({}, Dispatcher.prototype, {
    * dispatch
    * @param  {object} payload The data from the action.
    */
-  dispatch: function(payload) {
+  dispatch (payload) {
     // First create array of promises for callbacks to reference.
     var resolves = [];
     var rejects = [];

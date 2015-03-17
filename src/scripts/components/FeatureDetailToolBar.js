@@ -1,32 +1,39 @@
 'use strict';
 
-var React = require('react/addons');
+import React from 'react/addons';
 
 require('styles/FeatureDetailToolBar.css');
-var ReactBootstrap = require('react-bootstrap'),
-	{ Col, Button, ButtonToolbar, ButtonGroup, Glyphicon, Panel, OverlayTrigger, Tooltip } = ReactBootstrap;
+import { Col, Button, ButtonToolbar, ButtonGroup, Glyphicon, Panel, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { ButtonLink, MenuItemLink } from 'react-router-bootstrap';
+import Router from 'react-router';
+import { Link } from 'react-router';
+
 
 
 var pivotActions = require('../actions/PivotActions');
 
-var FeatureDetailToolBar = React.createClass({
+var FeatureDetailToolBar = React.createClass({	
   render: function () {
+  	var currentPath = Router.HistoryLocation.getCurrentPath();
+  	console.log(currentPath);
+  		
     return (
         <Panel>
+
           <ButtonToolbar className="pull-right">
-	          
-		      <ButtonGroup>
+		      <ButtonGroup>	          
+
 		        <OverlayTrigger placement="top" overlay={<Tooltip>Board</Tooltip>}>
-		        	<Button active={this.props.mode =="board"} onClick={this._onClick.bind(this, 'board')}><Glyphicon glyph="th"/></Button>
+		        	<ButtonLink to='board'><Glyphicon glyph="th"/></ButtonLink>
 		        </OverlayTrigger>
 
 		        <OverlayTrigger placement="top" overlay={<Tooltip>One by one</Tooltip>}>
-		        	<Button active={this.props.mode =="oneByOne"} onClick={this._onClick.bind(this, 'oneByOne')}><Glyphicon glyph="th-list"/></Button>		        
+		        	<ButtonLink to="oneByOne"><Glyphicon glyph="th-list"/></ButtonLink>		        
 		        </OverlayTrigger>
 
 
 		        <OverlayTrigger placement="top" overlay={<Tooltip>List</Tooltip>}>
-      				<Button active={this.props.mode =="list"} onClick={this._onClick.bind(this, 'list')}><Glyphicon glyph="list-alt"/></Button>
+      				<ButtonLink to="list" ><Glyphicon glyph="list-alt"/></ButtonLink>
       			 </OverlayTrigger>
 		      </ButtonGroup>
 

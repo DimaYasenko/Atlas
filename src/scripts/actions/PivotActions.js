@@ -1,22 +1,22 @@
+'use strict';
 /**
  * Pivot Actions
  */
 
-var AppDispatcher = require('../dispatcher/AppDispatcher');
-var PivotConstants = require('../constants/PivotConstants');
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import PivotConstants from '../constants/PivotConstants';
 
-var PivotActions = {
+const PivotActions = {
 
   /**
    * @param  {string} mode
    */
-  changeMode: function(mode) {
+  changeMode (mode) {  	
     AppDispatcher.handleViewAction({
       actionType: PivotConstants.CHANGE_MODE,
       mode: mode
     });    
   }
-
 };
 
 module.exports = PivotActions;

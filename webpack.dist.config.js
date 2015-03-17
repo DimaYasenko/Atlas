@@ -18,7 +18,7 @@ module.exports = {
 
   debug: false,
   devtool: false,
-  entry: './src/scripts/components/YoApp.js',
+  entry: './src/scripts/components/AtlasPivot.js',
 
   stats: {
     colors: true,
@@ -50,7 +50,7 @@ module.exports = {
     loaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'jsx-loader?harmony'
+      loader: 'babel-loader'
     }, {
       test: /\.css$/,
       loader: 'style-loader!css-loader'
