@@ -9,7 +9,6 @@ AtlasPivot - root component
 	FeatureDetail
 		FeatureDetailToolBar
 			FeatureDetailRepresentationSelector			
-		ItemList
-			ItemLink*
+		ItemList			
 		ItemDetail
 

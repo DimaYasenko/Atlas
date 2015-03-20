@@ -15,7 +15,7 @@ var pivotActions = require('../actions/PivotActions');
 var FeatureDetailToolBar = React.createClass({	
   render: function () {
   	var currentPath = Router.HistoryLocation.getCurrentPath();
-  	console.log(currentPath);
+  	console.log(this.props);
   		
     return (
         <Panel>
@@ -24,16 +24,16 @@ var FeatureDetailToolBar = React.createClass({
 		      <ButtonGroup>	          
 
 		        <OverlayTrigger placement="top" overlay={<Tooltip>Board</Tooltip>}>
-		        	<ButtonLink to='board'><Glyphicon glyph="th"/></ButtonLink>
+		        	<ButtonLink to={this.props.boardRouteName}><Glyphicon glyph="th"/></ButtonLink>
 		        </OverlayTrigger>
 
 		        <OverlayTrigger placement="top" overlay={<Tooltip>One by one</Tooltip>}>
-		        	<ButtonLink to="oneByOne"><Glyphicon glyph="th-list"/></ButtonLink>		        
+		        	<ButtonLink to={this.props.oneByOneRouteName}><Glyphicon glyph="th-list"/></ButtonLink>		        
 		        </OverlayTrigger>
 
 
 		        <OverlayTrigger placement="top" overlay={<Tooltip>List</Tooltip>}>
-      				<ButtonLink to="list" ><Glyphicon glyph="list-alt"/></ButtonLink>
+      				<ButtonLink to={this.props.listRouteName} ><Glyphicon glyph="list-alt"/></ButtonLink>
       			 </OverlayTrigger>
 		      </ButtonGroup>
 

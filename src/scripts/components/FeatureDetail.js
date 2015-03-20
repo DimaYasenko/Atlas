@@ -5,23 +5,20 @@ var React = require('react/addons');
 require('styles/FeatureDetail.css');
 
 
-var ReactBootstrap = require('react-bootstrap'),
-	{ Col, Button, Alert, Panel } = ReactBootstrap;
+import { Col, Button, Alert, Panel } from'react-bootstrap';
+import { State, Route, DefaultRoute, Redirect, RouteHandler, Link, DefaultRoute } from 'react-router';
 
 
 var FeatureDetailToolBar = require('./FeatureDetailToolBar');
 
 var FeatureDetail = React.createClass({
-  render: function () {
-
-  	var detail = this.props[this.props.mode]; //dynamic dispatching
-
+  render: function () {    
     return (
         <div>
-          <Col xs={12}><FeatureDetailToolBar mode={this.props.mode}/></Col>
+          <Col xs={12}>{ <this.props.toolBar/>}</Col>
           <Col xs={12}>
           <Panel>
-          	{detail}
+          	<RouteHandler/>
           </Panel>
           </Col>
         </div>
