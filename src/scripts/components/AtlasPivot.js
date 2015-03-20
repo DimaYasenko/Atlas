@@ -105,10 +105,11 @@ var Hello = partial(PuryHello, { state: state});
 
 var routes = (
   <Route handler={AtlasPivot} path="/">
-    <Route name="jobs" path="/jobs" handler={JobDetail}>
-      <Route name="jobs/board" path="jobs/board" handler={JobBoard}></Route>
-      <Route name="jobs/oneByOne" path="jobs/oneByOne" handler={Hello}></Route>
-      <Route name="jobs/list" path="jobs/list" handler={Hello}></Route>
+    <Route name="jobs" path="/jobs/board" handler={JobDetail}>
+      <Route name="jobs/board" path="/jobs/board" handler={JobBoard}></Route>
+      <Route name="jobs/oneByOne" path="oneByOne" handler={Hello}></Route>
+      <Route name="jobs/list" path="list" handler={Hello}></Route>
+      <Redirect to="jobs/list" />
     </Route>  
     <Route name="wellbores" path="/wellbores" handler={Wellbores}>         
       <Route name="wellbores/board" path="board" handler={JobBoard}></Route>
