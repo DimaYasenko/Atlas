@@ -18,7 +18,7 @@ var FeatureDetail = React.createClass({
           <Col xs={12}>{ <this.props.toolBar/>}</Col>
           <Col xs={12}>
           <Panel>
-          	<RouteHandler/>
+          	<RouteHandler state={this.props.state}/>
           </Panel>
           </Col>
         </div>

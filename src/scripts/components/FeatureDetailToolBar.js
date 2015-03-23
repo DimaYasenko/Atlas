@@ -15,7 +15,6 @@ var pivotActions = require('../actions/PivotActions');
 var FeatureDetailToolBar = React.createClass({	
   render: function () {
   	var currentPath = Router.HistoryLocation.getCurrentPath();
-  	console.log(this.props);
   		
     return (
         <Panel>

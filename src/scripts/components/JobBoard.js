@@ -19,10 +19,9 @@ var JobBoard = React.createClass({
 	  componentWillUnmount: function() {
 	    JobBoardStore.removeChangeListener(this._onChange);
 	  },
-  	render: function () {
-  		console.log('JobBoard');
+  	render: function () {  		
     	return (
-	        <ThDetail items={this.state.jobs}/>
+	        <ThDetail items={this.props.jobs}/>
 	      );
 	  },
   _onChange () {

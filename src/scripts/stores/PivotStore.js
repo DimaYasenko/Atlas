@@ -7,9 +7,9 @@ import assign from 'object-assign';
 const CHANGE_EVENT = 'change';
 
 
-let _state = {
-  mode: 'oneByOne',
-  jobs: ['Job1', 'Job2']
+let _state = {  
+  jobs: [],
+  wellbores: []
 };
 
 const PivotStore = assign({}, EventEmitter.prototype, {
@@ -42,17 +42,35 @@ const PivotStore = assign({}, EventEmitter.prototype, {
 
   dispatcherIndex: AppDispatcher.register(function(payload) {
     let action = payload.action;
-
+    let mode = action.mode;
     switch(action.actionType) {
-      case PivotConstants.CHANGE_MODE:
-        let mode = payload.action.mode;
-        if (['board', 'oneByOne', 'list'].indexOf(mode) >= 0) {
+      case PivotConstants.VIEW_JOB:
+        let { jobs, jobDetail } = payload.action;
+        if (mode === 'board') {
+          _state.jobs = jobs;
+          PivotStore.emitChange();
+        }
 
-          _state.mode = mode;
+        if (mode === 'oneByOne') {
+          _state.jobs = jobs;
+          _state.jobDetail = jobDetail;
           PivotStore.emitChange();
         }
         break;
 
+    case PivotConstants.VIEW_WELLBORE:
+        console.log('wellbore');
+        let { wellbores, wellboreDetail } = payload.action;
+        if (mode === 'board') {
+          _state.wellbores = wellbores;
+          PivotStore.emitChange();
+        }
+
+        if (mode === 'oneByOne') {
+          _state.wellbores = wellbores;
+          _state.wellbores = wellbores;
+        }
+        break;
 
     }
 
