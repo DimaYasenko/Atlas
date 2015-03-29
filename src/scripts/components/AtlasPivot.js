@@ -22,7 +22,8 @@ import { partial, purify } from '../helpers/combinators';
 import FeatureDetailToolBar from './FeatureDetailToolBar';
 import PivotActions from '../actions/PivotActions';
 import JobOneByOne from './JobOneByOne';
-
+import CustomerBoard from './CustomerBoard';
+import CustomerMain from './CustomerMain';
 var key = 1;
 
 function getPivotState() {
@@ -133,7 +134,11 @@ var routes = (
       <Route name="wellboreOneByOne" path="oneByOne" handler={JobBoard}></Route>
       <Route name="wellboreList" path="list" handler={JobBoard}></Route>     
     </Route>
-    <Route name="customers" path="/customers" handler={Hello}></Route>
+    <Route name="customers" path="/customers/board" handler={CustomerBoard}>
+      <Route name="customerBoard" path="/customers/board" handler={CustomerMain}/>
+      <Route name="customerOneByOne" handler={Hello}/>
+      <Route name="customerList" handler={Hello}/>
+    </Route>
     <Route name="wellDesigner" path="/wellDesigner" handler={Hello}></Route>
     <Route name="tubingForces" path="/tubingForces" handler={Hello}></Route>
     <Route name="hydraulics" path="/hydraulics" handler={Hello}></Route>
