@@ -64,8 +64,10 @@
 					var index = getHoveredIndex(options, e);
 					var data = plot.getData();
 
+					var xpos = plot.getCanvas().width - plot.legendOffset + options.legendPadding.left;
+					var horizontalInside = e.offsetX > plot.xpos && e.offsetX < plot.xpos + options.legendMarkerSize;
 
-					if (index == -1 || index >= data.length) return;
+					if (index == -1 || index >= data.length || !horizontalInside) return;
 					
 					if (index in plot.filteredData) {
 						data[index].data = plot.filteredData[index];
@@ -160,6 +162,7 @@
 
 		return index;
 	}
+
 	function drawLegend(plot, ctx) {
 
 		var options = plot.getOptions();
