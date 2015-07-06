@@ -22,6 +22,13 @@ import { partial, purify } from '../helpers/combinators';
 import FeatureDetailToolBar from './FeatureDetailToolBar';
 import PivotActions from '../actions/PivotActions';
 import JobOneByOne from './JobOneByOne';
+import LineChart from './LineChart';
+var mui = require('material-ui');
+var injectTapEventPlugin = require("react-tap-event-plugin");
+injectTapEventPlugin();
+import {FlatButton} from 'material-ui';
+
+var ThemeManager = new mui.Styles.ThemeManager();
 
 var key = 1;
 
@@ -29,7 +36,28 @@ function getPivotState() {
 	return PivotStore.getAll();  
 }
 
+function randomValues () {
+  var data = [];
+  var k = Math.random() * 10;
+  var c = Math.random() * 100;
+
+  for (var i = 0; i < 500; i++) {
+     data.push([i, Math.sin(i) * 2  + c]);
+  }
+  return data;
+}
 var AtlasPivot = React.createClass({
+  childContextTypes: {
+      muiTheme: React.PropTypes.object
+    },
+
+  getChildContext: function() {
+      return {
+        muiTheme: ThemeManager.getCurrentTheme()
+      };
+  },
+
+
 	getInitialState: function() {		
 		return getPivotState();		
 	},	
@@ -40,8 +68,27 @@ var AtlasPivot = React.createClass({
     	PivotStore.removeChangeListener(this._onChange);
   },
   render: function () {
+    var data = [];
+    for (var i = 0; i < 10; i++) {
+      data.push({
+        label: 'Test' + i,
+        data: randomValues()
+      });
+    }
     return (    	
         <div>
+          <FlatButton label="Default" primary/>          
+
+          <LineChart 
+                data={data} 
+                key={0} 
+                title="WOB vs Depth" 
+                width={800}
+                xLabel="Depth"
+                yLabel="WOB"
+                />
+
+          
         	<Col xs={12}><PivotToolBar /></Col>
           	<Col xs={2}><PivotSideBar/></Col>
           	<Col xs={10}> 
@@ -103,8 +150,29 @@ var JobOneByOnePure = purify(JobOneByOne, {
 });
 
 var MyText = React.createClass({
+  getInitialState: function () {
+      console.log('initial state');
+      return null;
+  },
+  componentDidMount: function () {
+      console.log('text was mounted');
+  },
   render() {
-    return (<div>{this.props.text}</div>);
+    return (<div>MyText</div>);
+  }
+});
+
+
+var MyText2 = React.createClass({
+  getInitialState: function () {
+      console.log('initial state2');
+      return null;
+  },
+  componentDidMount: function () {
+      console.log('text2 was mounted');
+  },
+  render() {
+    return (<div><MyText/></div>);
   }
 });
 
@@ -120,6 +188,8 @@ var state = {
 
 var Hello = partial(PuryHello, { state: state});
 
+// ThemeManager.setTheme(ThemeManager.types.LIGHT);
+
 var routes = (
   <Route name="root" handler={AtlasPivot} path="/">
     <Route name="jobs" path="/jobs/board" handler={JobDetail}>
@@ -133,8 +203,8 @@ var routes = (
       <Route name="wellboreOneByOne" path="oneByOne" handler={JobBoard}></Route>
       <Route name="wellboreList" path="list" handler={JobBoard}></Route>     
     </Route>
-    <Route name="customers" path="/customers" handler={Hello}></Route>
-    <Route name="wellDesigner" path="/wellDesigner" handler={Hello}></Route>
+    <Route name="customers" path="/customers" handler={MyText}></Route>
+    <Route name="wellDesigner" path="/wellDesigner" handler={MyText2}></Route>
     <Route name="tubingForces" path="/tubingForces" handler={Hello}></Route>
     <Route name="hydraulics" path="/hydraulics" handler={Hello}></Route>
     <Route name="tubingLifeTracking" path="/tubingLifeTracking" handler={Hello}></Route>

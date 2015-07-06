@@ -28,6 +28,7 @@ module.exports = {
   },
 
   resolve: {
+    modulesDirectories: ['node_modules', 'bower_components'],
     extensions: ['', '.js'],
     alias: {
       'styles': '../../../src/styles',

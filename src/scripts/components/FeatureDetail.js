@@ -12,6 +12,9 @@ import { State, Route, DefaultRoute, Redirect, RouteHandler, Link, DefaultRoute 
 var FeatureDetailToolBar = require('./FeatureDetailToolBar');
 
 var FeatureDetail = React.createClass({
+  componentDidMount () {
+      console.log('Mounted');
+  },
   render: function () {    
     return (
         <div>

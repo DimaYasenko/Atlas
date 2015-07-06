@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Flot Examples: Basic Usage</title>
+	<link href="css/examples.css" rel="stylesheet" type="text/css">
+		<link href="libs/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css">
+	<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="../../excanvas.min.js"></script><![endif]-->
+	<script language="javascript" type="text/javascript" src="libs/js/jquery.min.js"></script>
+		<script language="javascript" type="text/javascript" src="libs/jquery-ui/jquery-ui.min.js"></script>
+	<script language="javascript" type="text/javascript" src="libs/js/jquery.flot.min.js"></script>
+	<script language="javascript" type="text/javascript" src="libs/js/jquery.flot.resize.min.js"></script>
+	<script language="javascript" type="text/javascript" src="libs/js/jquery.flot.navigate.min.js"></script>
+	<script language="javascript" type="text/javascript" src="libs/js/jquery.flot.canvas.min.js"></script>
+	<script language="javascript" type="text/javascript" src="libs/js/base64.js"></script>
+	<script language="javascript" type="text/javascript" src="libs/js/canvas2image.js"></script>
+	<script language="javascript" type="text/javascript" src="libs/js/jquery.flot.saveAsImage.js"></script>
+	<script language="javascript" type="text/javascript" src="libs/js/jquery.flot.custom.js"></script>
+	<script language="javascript" type="text/javascript" src="js/main.js"></script>
+
+
+	<script type="text/javascript">
+	$(function() {
+		var indxs =[1, 2, 3, 4];
+		indxs.forEach(function(i) {
+			makeChart('#placeholder-' + i, makeDS());
+		})
+
+	});
+
+	</script>
+</head>
+<body>
+
+	<div id="header">
+		<h2>Basic Usage</h2>
+	</div>
+
+	<div>
+
+		<div class="demo-container">
+			<div id="placeholder-1" class="demo-placeholder"></div>
+		</div>
+		<div class="demo-container">
+			<div id="placeholder-2" class="demo-placeholder"></div>
+		</div>
+		<div class="demo-container">
+			<div id="placeholder-3" class="demo-placeholder"></div>
+		</div>
+		<div class="demo-container">
+			<div id="placeholder-4" class="demo-placeholder"></div>
+		</div>
+			
+
+
+	</div>
+
+	<div id="footer">
+		Copyright &copy; 2007 - 2014 IOLA and Ole Laursen
+	</div>
+
+</body>
+</html>

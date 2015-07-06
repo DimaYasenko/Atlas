@@ -1,0 +1,282 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'i',
+1 verbose cli   'script-loader',
+1 verbose cli   '--save-dev' ]
+2 info using npm@2.5.1
+3 info using node@v0.12.0
+4 verbose node symlink C:\Program Files\nodejs\\node.exe
+5 warn package.json jsxhint-loader@0.2.0 No repository field.
+6 silly cache add args [ 'script-loader', null ]
+7 verbose cache add spec script-loader
+8 silly cache add parsed spec { raw: 'script-loader',
+8 silly cache add   scope: null,
+8 silly cache add   name: 'script-loader',
+8 silly cache add   rawSpec: '',
+8 silly cache add   spec: '*',
+8 silly cache add   type: 'range' }
+9 verbose addNamed script-loader@*
+10 silly addNamed semver.valid null
+11 silly addNamed semver.validRange *
+12 silly addNameRange { name: 'script-loader', range: '*', hasData: false }
+13 silly mapToRegistry name script-loader
+14 silly mapToRegistry using default registry
+15 silly mapToRegistry registry https://registry.npmjs.org/
+16 silly mapToRegistry uri https://registry.npmjs.org/script-loader
+17 verbose addNameRange registry:https://registry.npmjs.org/script-loader not in flight; fetching
+18 verbose request uri https://registry.npmjs.org/script-loader
+19 verbose request no auth needed
+20 info attempt registry request try #1 at 18:36:03
+21 verbose request id c842b8ab030f602d
+22 http request GET https://registry.npmjs.org/script-loader
+23 http 200 https://registry.npmjs.org/script-loader
+24 silly get cb [ 200,
+24 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+24 silly get     etag: '"72V9MDAUC4WPJOUN1J0XQSO3T"',
+24 silly get     'content-type': 'application/json',
+24 silly get     'cache-control': 'max-age=60',
+24 silly get     'content-length': '9493',
+24 silly get     'accept-ranges': 'bytes',
+24 silly get     date: 'Wed, 24 Jun 2015 15:36:02 GMT',
+24 silly get     via: '1.1 varnish',
+24 silly get     age: '0',
+24 silly get     connection: 'keep-alive',
+24 silly get     'x-served-by': 'cache-fra1223-FRA',
+24 silly get     'x-cache': 'HIT',
+24 silly get     'x-cache-hits': '1',
+24 silly get     'x-timer': 'S1435160162.129383,VS0,VE179',
+24 silly get     vary: 'Accept' } ]
+25 verbose get saving script-loader to C:\Users\Asus\AppData\Roaming\npm-cache\registry.npmjs.org\script-loader\.cache.json
+26 silly addNameRange number 2 { name: 'script-loader', range: '*', hasData: true }
+27 silly addNameRange versions [ 'script-loader',
+27 silly addNameRange   [ '0.1.1',
+27 silly addNameRange     '0.1.2',
+27 silly addNameRange     '0.2.0',
+27 silly addNameRange     '0.3.0',
+27 silly addNameRange     '0.2.1',
+27 silly addNameRange     '0.3.1',
+27 silly addNameRange     '0.5.0',
+27 silly addNameRange     '0.5.1',
+27 silly addNameRange     '0.5.2',
+27 silly addNameRange     '0.6.0',
+27 silly addNameRange     '0.6.1' ] ]
+28 verbose addNamed script-loader@0.6.1
+29 silly addNamed semver.valid 0.6.1
+30 silly addNamed semver.validRange 0.6.1
+31 silly mapToRegistry name script-loader
+32 silly mapToRegistry using default registry
+33 silly mapToRegistry registry https://registry.npmjs.org/
+34 silly mapToRegistry uri https://registry.npmjs.org/script-loader
+35 verbose addRemoteTarball https://registry.npmjs.org/script-loader/-/script-loader-0.6.1.tgz not in flight; adding
+36 verbose addRemoteTarball [ 'https://registry.npmjs.org/script-loader/-/script-loader-0.6.1.tgz',
+36 verbose addRemoteTarball   '183c6103945aaf5134b46f03003b5ee2bad44ceb' ]
+37 info retry fetch attempt 1 at 18:36:04
+38 info attempt registry request try #1 at 18:36:04
+39 http fetch GET https://registry.npmjs.org/script-loader/-/script-loader-0.6.1.tgz
+40 http fetch 200 https://registry.npmjs.org/script-loader/-/script-loader-0.6.1.tgz
+41 silly fetchAndShaCheck shasum 183c6103945aaf5134b46f03003b5ee2bad44ceb
+42 verbose addTmpTarball C:\Users\Asus\AppData\Local\Temp\npm-100444-f1503d06\registry.npmjs.org\script-loader\-\script-loader-0.6.1.tgz not in flight; adding
+43 verbose addTmpTarball already have metadata; skipping unpack for script-loader@0.6.1
+44 silly cache afterAdd script-loader@0.6.1
+45 verbose afterAdd C:\Users\Asus\AppData\Roaming\npm-cache\script-loader\0.6.1\package\package.json not in flight; writing
+46 verbose afterAdd C:\Users\Asus\AppData\Roaming\npm-cache\script-loader\0.6.1\package\package.json written
+47 silly install resolved [ { name: 'script-loader',
+47 silly install resolved     version: '0.6.1',
+47 silly install resolved     author: { name: 'Tobias Koppers @sokra' },
+47 silly install resolved     description: 'script loader module for webpack',
+47 silly install resolved     dependencies: { 'raw-loader': '~0.5.1' },
+47 silly install resolved     repository: { type: 'git', url: 'git@github.com:webpack/script-loader.git' },
+47 silly install resolved     licenses: [ [Object] ],
+47 silly install resolved     gitHead: '5bde096ce6e3e6a7b4afab743737d4e138b28487',
+47 silly install resolved     bugs: { url: 'https://github.com/webpack/script-loader/issues' },
+47 silly install resolved     homepage: 'https://github.com/webpack/script-loader',
+47 silly install resolved     _id: 'script-loader@0.6.1',
+47 silly install resolved     scripts: {},
+47 silly install resolved     _shasum: '183c6103945aaf5134b46f03003b5ee2bad44ceb',
+47 silly install resolved     _from: 'script-loader@*',
+47 silly install resolved     _npmVersion: '1.4.28',
+47 silly install resolved     _npmUser: { name: 'sokra', email: 'tobias.koppers@googlemail.com' },
+47 silly install resolved     maintainers: [ [Object] ],
+47 silly install resolved     dist:
+47 silly install resolved      { shasum: '183c6103945aaf5134b46f03003b5ee2bad44ceb',
+47 silly install resolved        tarball: 'http://registry.npmjs.org/script-loader/-/script-loader-0.6.1.tgz' },
+47 silly install resolved     directories: {},
+47 silly install resolved     _resolved: 'https://registry.npmjs.org/script-loader/-/script-loader-0.6.1.tgz' } ]
+48 info install script-loader@0.6.1 into D:\Projects\AtlasUI\AtlasUI
+49 info installOne script-loader@0.6.1
+50 verbose installOne of script-loader to D:\Projects\AtlasUI\AtlasUI not in flight; installing
+51 verbose lock using C:\Users\Asus\AppData\Roaming\npm-cache\_locks\script-loader-7b6152488e76454e.lock for D:\Projects\AtlasUI\AtlasUI\node_modules\script-loader
+52 silly install write writing script-loader 0.6.1 to D:\Projects\AtlasUI\AtlasUI\node_modules\script-loader
+53 silly cache addNamed cb script-loader@0.6.1
+54 verbose unbuild node_modules\script-loader
+55 verbose gentlyRm vacuuming D:\Projects\AtlasUI\AtlasUI\node_modules\script-loader
+56 verbose tar unpack C:\Users\Asus\AppData\Roaming\npm-cache\script-loader\0.6.1\package.tgz
+57 verbose tar unpacking to D:\Projects\AtlasUI\AtlasUI\node_modules\script-loader
+58 verbose gentlyRm vacuuming D:\Projects\AtlasUI\AtlasUI\node_modules\script-loader
+59 silly gunzTarPerm modes [ '777', '666' ]
+60 silly gunzTarPerm extractEntry package.json
+61 silly gunzTarPerm extractEntry .npmignore
+62 silly gunzTarPerm extractEntry README.md
+63 silly gunzTarPerm extractEntry addScript.js
+64 silly gunzTarPerm extractEntry index.js
+65 info preinstall script-loader@0.6.1
+66 silly prepareForInstallMany adding raw-loader@~0.5.1 from script-loader dependencies
+67 silly cache add args [ 'raw-loader@~0.5.1', null ]
+68 verbose cache add spec raw-loader@~0.5.1
+69 silly cache add parsed spec { raw: 'raw-loader@~0.5.1',
+69 silly cache add   scope: null,
+69 silly cache add   name: 'raw-loader',
+69 silly cache add   rawSpec: '~0.5.1',
+69 silly cache add   spec: '>=0.5.1 <0.6.0',
+69 silly cache add   type: 'range' }
+70 verbose addNamed raw-loader@>=0.5.1 <0.6.0
+71 silly addNamed semver.valid null
+72 silly addNamed semver.validRange >=0.5.1 <0.6.0
+73 silly addNameRange { name: 'raw-loader', range: '>=0.5.1 <0.6.0', hasData: false }
+74 silly mapToRegistry name raw-loader
+75 silly mapToRegistry using default registry
+76 silly mapToRegistry registry https://registry.npmjs.org/
+77 silly mapToRegistry uri https://registry.npmjs.org/raw-loader
+78 verbose addNameRange registry:https://registry.npmjs.org/raw-loader not in flight; fetching
+79 verbose request uri https://registry.npmjs.org/raw-loader
+80 verbose request no auth needed
+81 info attempt registry request try #1 at 18:36:04
+82 http request GET https://registry.npmjs.org/raw-loader
+83 http 200 https://registry.npmjs.org/raw-loader
+84 silly get cb [ 200,
+84 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+84 silly get     etag: '"8N8CC755VD1WDOH84PXNHJC7R"',
+84 silly get     'content-type': 'application/json',
+84 silly get     'cache-control': 'max-age=60',
+84 silly get     'content-length': '8268',
+84 silly get     'accept-ranges': 'bytes',
+84 silly get     date: 'Wed, 24 Jun 2015 15:36:02 GMT',
+84 silly get     via: '1.1 varnish',
+84 silly get     age: '0',
+84 silly get     connection: 'keep-alive',
+84 silly get     'x-served-by': 'cache-fra1225-FRA',
+84 silly get     'x-cache': 'HIT',
+84 silly get     'x-cache-hits': '1',
+84 silly get     'x-timer': 'S1435160162.865849,VS0,VE107',
+84 silly get     vary: 'Accept' } ]
+85 verbose get saving raw-loader to C:\Users\Asus\AppData\Roaming\npm-cache\registry.npmjs.org\raw-loader\.cache.json
+86 silly addNameRange number 2 { name: 'raw-loader', range: '>=0.5.1 <0.6.0', hasData: true }
+87 silly addNameRange versions [ 'raw-loader',
+87 silly addNameRange   [ '0.1.0',
+87 silly addNameRange     '0.1.1',
+87 silly addNameRange     '0.1.2',
+87 silly addNameRange     '0.1.3',
+87 silly addNameRange     '0.1.4',
+87 silly addNameRange     '0.1.5',
+87 silly addNameRange     '0.1.6',
+87 silly addNameRange     '0.2.0',
+87 silly addNameRange     '0.5.0',
+87 silly addNameRange     '0.5.1' ] ]
+88 verbose addNamed raw-loader@0.5.1
+89 silly addNamed semver.valid 0.5.1
+90 silly addNamed semver.validRange 0.5.1
+91 silly mapToRegistry name raw-loader
+92 silly mapToRegistry using default registry
+93 silly mapToRegistry registry https://registry.npmjs.org/
+94 silly mapToRegistry uri https://registry.npmjs.org/raw-loader
+95 verbose addRemoteTarball https://registry.npmjs.org/raw-loader/-/raw-loader-0.5.1.tgz not in flight; adding
+96 verbose addRemoteTarball [ 'https://registry.npmjs.org/raw-loader/-/raw-loader-0.5.1.tgz',
+96 verbose addRemoteTarball   '0c3d0beaed8a01c966d9787bf778281252a979aa' ]
+97 info retry fetch attempt 1 at 18:36:04
+98 info attempt registry request try #1 at 18:36:04
+99 http fetch GET https://registry.npmjs.org/raw-loader/-/raw-loader-0.5.1.tgz
+100 http fetch 200 https://registry.npmjs.org/raw-loader/-/raw-loader-0.5.1.tgz
+101 silly fetchAndShaCheck shasum 0c3d0beaed8a01c966d9787bf778281252a979aa
+102 verbose addTmpTarball C:\Users\Asus\AppData\Local\Temp\npm-100444-f1503d06\registry.npmjs.org\raw-loader\-\raw-loader-0.5.1.tgz not in flight; adding
+103 verbose addTmpTarball already have metadata; skipping unpack for raw-loader@0.5.1
+104 silly cache afterAdd raw-loader@0.5.1
+105 verbose afterAdd C:\Users\Asus\AppData\Roaming\npm-cache\raw-loader\0.5.1\package\package.json not in flight; writing
+106 verbose afterAdd C:\Users\Asus\AppData\Roaming\npm-cache\raw-loader\0.5.1\package\package.json written
+107 silly install resolved [ { name: 'raw-loader',
+107 silly install resolved     version: '0.5.1',
+107 silly install resolved     author: { name: 'Tobias Koppers @sokra' },
+107 silly install resolved     description: 'raw loader module for webpack',
+107 silly install resolved     repository: { type: 'git', url: 'git@github.com:webpack/raw-loader.git' },
+107 silly install resolved     licenses: [ [Object] ],
+107 silly install resolved     bugs: { url: 'https://github.com/webpack/raw-loader/issues' },
+107 silly install resolved     homepage: 'https://github.com/webpack/raw-loader',
+107 silly install resolved     _id: 'raw-loader@0.5.1',
+107 silly install resolved     dist:
+107 silly install resolved      { shasum: '0c3d0beaed8a01c966d9787bf778281252a979aa',
+107 silly install resolved        tarball: 'http://registry.npmjs.org/raw-loader/-/raw-loader-0.5.1.tgz' },
+107 silly install resolved     _from: 'raw-loader@>=0.5.1 <0.6.0',
+107 silly install resolved     _npmVersion: '1.3.17',
+107 silly install resolved     _npmUser: { name: 'sokra', email: 'tobias.koppers@googlemail.com' },
+107 silly install resolved     maintainers: [ [Object] ],
+107 silly install resolved     directories: {},
+107 silly install resolved     _shasum: '0c3d0beaed8a01c966d9787bf778281252a979aa',
+107 silly install resolved     _resolved: 'https://registry.npmjs.org/raw-loader/-/raw-loader-0.5.1.tgz' } ]
+108 info install raw-loader@0.5.1 into D:\Projects\AtlasUI\AtlasUI\node_modules\script-loader
+109 info installOne raw-loader@0.5.1
+110 verbose installOne of raw-loader to D:\Projects\AtlasUI\AtlasUI\node_modules\script-loader not in flight; installing
+111 verbose lock using C:\Users\Asus\AppData\Roaming\npm-cache\_locks\raw-loader-ab57e16f09916d95.lock for D:\Projects\AtlasUI\AtlasUI\node_modules\script-loader\node_modules\raw-loader
+112 silly install write writing raw-loader 0.5.1 to D:\Projects\AtlasUI\AtlasUI\node_modules\script-loader\node_modules\raw-loader
+113 silly cache addNamed cb raw-loader@0.5.1
+114 verbose unbuild node_modules\script-loader\node_modules\raw-loader
+115 verbose gentlyRm vacuuming D:\Projects\AtlasUI\AtlasUI\node_modules\script-loader\node_modules\raw-loader
+116 verbose tar unpack C:\Users\Asus\AppData\Roaming\npm-cache\raw-loader\0.5.1\package.tgz
+117 verbose tar unpacking to D:\Projects\AtlasUI\AtlasUI\node_modules\script-loader\node_modules\raw-loader
+118 verbose gentlyRm vacuuming D:\Projects\AtlasUI\AtlasUI\node_modules\script-loader\node_modules\raw-loader
+119 silly gunzTarPerm modes [ '777', '666' ]
+120 silly gunzTarPerm extractEntry package.json
+121 silly gunzTarPerm extractEntry README.md
+122 silly gunzTarPerm extractEntry index.js
+123 info preinstall raw-loader@0.5.1
+124 silly install resolved []
+125 verbose about to build D:\Projects\AtlasUI\AtlasUI\node_modules\script-loader\node_modules\raw-loader
+126 info build D:\Projects\AtlasUI\AtlasUI\node_modules\script-loader\node_modules\raw-loader
+127 verbose linkStuff [ false,
+127 verbose linkStuff   false,
+127 verbose linkStuff   false,
+127 verbose linkStuff   'D:\\Projects\\AtlasUI\\AtlasUI\\node_modules\\script-loader\\node_modules' ]
+128 info linkStuff raw-loader@0.5.1
+129 verbose linkBins raw-loader@0.5.1
+130 verbose linkMans raw-loader@0.5.1
+131 verbose rebuildBundles raw-loader@0.5.1
+132 info install raw-loader@0.5.1
+133 info postinstall raw-loader@0.5.1
+134 verbose unlock done using C:\Users\Asus\AppData\Roaming\npm-cache\_locks\raw-loader-ab57e16f09916d95.lock for D:\Projects\AtlasUI\AtlasUI\node_modules\script-loader\node_modules\raw-loader
+135 verbose about to build D:\Projects\AtlasUI\AtlasUI\node_modules\script-loader
+136 info build D:\Projects\AtlasUI\AtlasUI\node_modules\script-loader
+137 verbose linkStuff [ false,
+137 verbose linkStuff   false,
+137 verbose linkStuff   false,
+137 verbose linkStuff   'D:\\Projects\\AtlasUI\\AtlasUI\\node_modules' ]
+138 info linkStuff script-loader@0.6.1
+139 verbose linkBins script-loader@0.6.1
+140 verbose linkMans script-loader@0.6.1
+141 verbose rebuildBundles script-loader@0.6.1
+142 verbose rebuildBundles [ 'raw-loader' ]
+143 info install script-loader@0.6.1
+144 info postinstall script-loader@0.6.1
+145 verbose unlock done using C:\Users\Asus\AppData\Roaming\npm-cache\_locks\script-loader-7b6152488e76454e.lock for D:\Projects\AtlasUI\AtlasUI\node_modules\script-loader
+146 verbose stack Error: The package react does not satisfy its siblings' peerDependencies requirements!
+146 verbose stack     at C:\Program Files\nodejs\node_modules\npm\lib\install.js:103:32
+146 verbose stack     at C:\Program Files\nodejs\node_modules\npm\lib\install.js:225:5
+146 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\read-installed\read-installed.js:138:5
+146 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\read-installed\read-installed.js:251:14
+146 verbose stack     at cb (C:\Program Files\nodejs\node_modules\npm\node_modules\slide\lib\async-map.js:47:24)
+146 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\read-installed\read-installed.js:251:14
+146 verbose stack     at cb (C:\Program Files\nodejs\node_modules\npm\node_modules\slide\lib\async-map.js:47:24)
+146 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\read-installed\read-installed.js:251:14
+146 verbose stack     at cb (C:\Program Files\nodejs\node_modules\npm\node_modules\slide\lib\async-map.js:47:24)
+146 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\read-installed\read-installed.js:251:14
+147 verbose cwd D:\Projects\AtlasUI\AtlasUI
+148 error Windows_NT 6.1.7601
+149 error argv "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "i" "script-loader" "--save-dev"
+150 error node v0.12.0
+151 error npm  v2.5.1
+152 error code EPEERINVALID
+153 error peerinvalid The package react does not satisfy its siblings' peerDependencies requirements!
+153 error peerinvalid Peer react-bootstrap@0.16.1 wants react@>=0.12
+153 error peerinvalid Peer react-router@0.12.4 wants react@0.12.x
+153 error peerinvalid Peer react-tap-event-plugin@0.1.7 wants react@~0.13.x || ~0.12.x
+153 error peerinvalid Peer material-ui@0.9.2 wants react@>=0.13
+153 error peerinvalid Peer react-hot-loader@1.2.7 wants react@>=0.11.0
+154 verbose exit [ 1, true ]

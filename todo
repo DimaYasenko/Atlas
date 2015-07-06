@@ -1,0 +1,6 @@
+Chart:
++1. Add tooltip
+2. Add canvas based legend with filter option
+3. Move legend to sidebar and add appropriate button on toolbar
++4. Create axis label on chart
++5. Add button to save image

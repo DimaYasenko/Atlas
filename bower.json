@@ -1,0 +1,19 @@
+{
+  "name": "AtlasUI",
+  "version": "0.0.0",
+  "homepage": "https://github.com/DimaYasenko/AtlasUI",
+  "authors": [
+    "wheercool <wheercool@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jquery": "~2.1.4"
+  }
+}
