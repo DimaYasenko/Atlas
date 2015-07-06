@@ -22,6 +22,7 @@ import { partial, purify } from '../helpers/combinators';
 import FeatureDetailToolBar from './FeatureDetailToolBar';
 import PivotActions from '../actions/PivotActions';
 import JobOneByOne from './JobOneByOne';
+
 import LineChart from './LineChart';
 var mui = require('material-ui');
 var injectTapEventPlugin = require("react-tap-event-plugin");
@@ -29,6 +30,10 @@ injectTapEventPlugin();
 import {FlatButton} from 'material-ui';
 
 var ThemeManager = new mui.Styles.ThemeManager();
+
+
+import CustomerBoard from './CustomerBoard';
+import CustomerMain from './CustomerMain';
 
 var key = 1;
 
@@ -203,8 +208,12 @@ var routes = (
       <Route name="wellboreOneByOne" path="oneByOne" handler={JobBoard}></Route>
       <Route name="wellboreList" path="list" handler={JobBoard}></Route>     
     </Route>
-    <Route name="customers" path="/customers" handler={MyText}></Route>
-    <Route name="wellDesigner" path="/wellDesigner" handler={MyText2}></Route>
+    <Route name="customers" path="/customers/board" handler={CustomerBoard}>
+      <Route name="customerBoard" path="/customers/board" handler={CustomerMain}/>
+      <Route name="customerOneByOne" handler={Hello}/>
+      <Route name="customerList" handler={Hello}/>
+    </Route>
+    <Route name="wellDesigner" path="/wellDesigner" handler={Hello}></Route>
     <Route name="tubingForces" path="/tubingForces" handler={Hello}></Route>
     <Route name="hydraulics" path="/hydraulics" handler={Hello}></Route>
     <Route name="tubingLifeTracking" path="/tubingLifeTracking" handler={Hello}></Route>
