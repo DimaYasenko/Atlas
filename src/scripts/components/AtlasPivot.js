@@ -2,7 +2,10 @@
 
 import React from 'react/addons';
 
-require('styles/AtlasPivot.css');
+import css from 'styles/AtlasPivot.css';
+import css2 from 'styles/RedStyle.css';
+
+
 
 import TransitionGroup from 'react/lib/ReactCSSTransitionGroup';
 
@@ -11,10 +14,10 @@ import { State, Route, DefaultRoute, Redirect, RouteHandler, Link, DefaultRoute 
 
 import PivotStore from '../stores/PivotStore';
 
-import { Col, Button, ListGroup, ListGroupItem, TabbedArea, TabPane, Badge} from 'react-bootstrap';
+import { Col, Button, ListGroup, ListGroupItem, TabbedArea, TabPane, Badge, Row} from 'react-bootstrap';
 import { NavItemLink, ButtonLink, MenuItemLink} from 'react-router-bootstrap';
-import PivotToolBar from './PivotToolBar';
-import PivotSideBar from './PivotSideBar';
+import AtlasToolBar from './AtlasToolBar';
+import AtlasSideBar from './AtlasSideBar';
 import FeatureDetail from './FeatureDetail';
 import ThDetail from './ThDetail';
 // import JobBoard from './JobBoard';
@@ -81,26 +84,32 @@ var AtlasPivot = React.createClass({
       });
     }
     return (    	
-        <div>
-          <FlatButton label="Default" primary/>          
+        <div className="AtlasPivot skin-red-light">
+         
+         
 
-          <LineChart 
-                data={data} 
-                key={0} 
-                title="WOB vs Depth" 
-                width={800}
-                xLabel="Depth"
-                yLabel="WOB"
-                />
+          <div className="wrapper">
+        	   <AtlasToolBar />
+          	 <AtlasSideBar/>
 
+             <div className="content-wrapper">
+               <LineChart 
+                  data={data} 
+                  key={0} 
+                  title="WOB vs Depth" 
+                  width={800}
+                  xLabel="Depth"
+                  yLabel="WOB"
+                  />
+
+              	<Col xs={10}> 
+                  <TransitionGroup component="div" transitionName="example">
+                    <RouteHandler state={this.state} key={name}/>
+                  </TransitionGroup>
+              </Col>          
           
-        	<Col xs={12}><PivotToolBar /></Col>
-          	<Col xs={2}><PivotSideBar/></Col>
-          	<Col xs={10}> 
-              <TransitionGroup component="div" transitionName="example">
-                <RouteHandler state={this.state} key={name}/>
-              </TransitionGroup>
-          </Col>          
+            </div>
+            </div>
         </div>
       );
   },

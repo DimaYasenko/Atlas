@@ -1,0 +1,8 @@
+.Logo {
+  border-right: 1px solid #eee;
+  
+  -webkit-transition: width .3s ease-in-out;
+  -o-transition: width .3s ease-in-out;
+  transition: width .3s ease-in-out;
+    
+}

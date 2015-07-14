@@ -1,0 +1,8 @@
+.SideBarSearchForm {
+	overflow: hidden;
+	text-overflow: clip;
+	border-radius: 3px;
+	border: 1px solid #d2d6de;
+	margin: 10px 10px;
+}
+

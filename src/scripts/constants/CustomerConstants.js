@@ -1,3 +1,3 @@
 module.exports = {
-	LOAD_CUSTOMERS: Symbol('Load customer')
+	LOAD_CUSTOMERS: 'Load customer'
 };

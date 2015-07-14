@@ -1,0 +1,18 @@
+.ToolBarButton .dropdown-toggle{
+	border-left: 1px solid #eee;
+}
+
+.ToolBarButton .label {
+	position: absolute;
+	top: 9px;
+	right: 7px;
+	text-align: center;
+	font-size: 9px;
+	padding: 2px 3px;
+	line-height: 0.9;
+}
+
+.ToolBarButton a.dropdown-toggle:hover {
+  	background: #fff;
+	color: #999;
+}

@@ -1,0 +1,44 @@
+.AtlasSideBarMenu {  	
+	list-style: none;
+	white-space: nowrap!important;
+	margin: 0;
+	padding: 0;
+}
+.AtlasSideBarMenu>li {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+.AtlasSideBarMenu i{
+	padding-right: 8px;
+}
+
+.AtlasSideBarMenu>li>a {
+  padding: 12px 5px 12px 15px;
+  display: block;
+}
+
+.AtlasSideBarMenu li.header {
+  padding: 10px 25px 10px 15px;
+  font-size: 12px;
+}
+.AtlasSideBarMenu .treeview-menu {
+  display: none;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  padding-left: 5px;
+}
+
+.AtlasSideBarMenu a {
+	color: black;
+	text-decoration: none;
+}
+
+.AtlasSideBarMenu li>a>.fa-angle-left {
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin-right: 10px;
+  margin-top: 3px;
+}

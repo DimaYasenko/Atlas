@@ -1,0 +1,11 @@
+.User .dropdown-toggle{
+	border-left: 1px solid #eee;
+}
+.User .user-image{
+  float: left;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-top: -2px
+}
