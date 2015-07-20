@@ -2,8 +2,8 @@
 
 import React from 'react/addons';
 
-import css from 'styles/AtlasPivot.css';
-import css2 from 'styles/RedStyle.css';
+require('styles/AtlasPivot.css');
+require('styles/RedStyle.css');
 
 
 
@@ -14,19 +14,19 @@ import { State, Route, DefaultRoute, Redirect, RouteHandler, Link, DefaultRoute 
 
 import PivotStore from '../stores/PivotStore';
 
-import { Col, Button, ListGroup, ListGroupItem, TabbedArea, TabPane, Badge, Row} from 'react-bootstrap';
+import { Col, Button, ListGroup, ListGroupItem, TabbedArea, TabPane, Badge, Row, Modal, Input} from 'react-bootstrap';
 import { NavItemLink, ButtonLink, MenuItemLink} from 'react-router-bootstrap';
-import AtlasToolBar from './AtlasToolBar';
-import AtlasSideBar from './AtlasSideBar';
-import FeatureDetail from './FeatureDetail';
-import ThDetail from './ThDetail';
+import AtlasToolBar from 'components/AtlasToolBar';
+import AtlasSideBar from 'components/AtlasSideBar';
+import FeatureDetail from 'components/FeatureDetail';
+import ThDetail from 'components/ThDetail';
 // import JobBoard from './JobBoard';
 import { partial, purify } from '../helpers/combinators';
-import FeatureDetailToolBar from './FeatureDetailToolBar';
+import FeatureDetailToolBar from 'components/FeatureDetailToolBar';
 import PivotActions from '../actions/PivotActions';
-import JobOneByOne from './JobOneByOne';
+import JobOneByOne from 'components/JobOneByOne';
 
-import LineChart from './LineChart';
+import LineChart from 'components/LineChart';
 var mui = require('material-ui');
 var injectTapEventPlugin = require("react-tap-event-plugin");
 injectTapEventPlugin();
@@ -34,9 +34,11 @@ import {FlatButton} from 'material-ui';
 
 var ThemeManager = new mui.Styles.ThemeManager();
 
-
-import CustomerBoard from './CustomerBoard';
-import CustomerMain from './CustomerMain';
+import CustomerBoard from 'components/CustomerBoard';
+import CustomerMain from 'components/CustomerMain';
+import AtlasGrid from 'components/AtlasGrid';
+import promises from '../helpers/promises';
+import AtlasMaintainToolbar from 'components/AtlasMaintainToolbar';
 
 var key = 1;
 
@@ -66,7 +68,7 @@ var AtlasPivot = React.createClass({
   },
 
 
-	getInitialState: function() {		
+	getInitialState: function() {
 		return getPivotState();		
 	},	
 	componentDidMount: function() {
@@ -77,23 +79,89 @@ var AtlasPivot = React.createClass({
   },
   render: function () {
     var data = [];
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < 30; i++) {
       data.push({
         label: 'Test' + i,
         data: randomValues()
       });
     }
-    return (    	
-        <div className="AtlasPivot skin-red-light">
-         
-         
 
+    function getData(params) {
+      console.log(params);
+      console.log(data.slice(params.skip, params.skip + params.pageSize));
+      return promises
+              .delay(1500)
+              .then(() => { return {count: data.length, data: data.slice(params.skip, params.skip + params.pageSize)}});
+    }
+
+      var columns = [
+      {
+        name: 'label'
+      },
+      {
+        name: 'data'        
+      }, {
+        name: 'Some',
+        render: function(value, data) {
+          return 'Test ' + data.label;
+        }
+      }];      
+    return ( 
+        <div className="AtlasPivot skin-red-light">         
           <div className="wrapper">
         	   <AtlasToolBar />
           	 <AtlasSideBar/>
+              <Modal show={this.state.showAdd} >
+                <Modal.Header closeButton>
+                  <Modal.Title>Add</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <Input  type="text"
+                          label="Label"/>
+                  <Input  type="text"
+                          label="Data"/>
+                  <Input  type="text"
+                          label="Some"/>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button onClick={this.onCloseAdd}>Add</Button>
+                  <Button onClick={this.onCloseAdd}>Close</Button>
+                </Modal.Footer>
+            </Modal>
+
+
+            <Modal show={this.state.showEdit} >
+                <Modal.Header closeButton>
+                  <Modal.Title>Edit</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <Input  type="text"
+                          label="Label"
+                          value={this.state.label}/>
+                  <Input  type="text"
+                          label="Data"/>
+                  <Input  type="text"
+                          label="Some"/>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button onClick={this.onCloseAdd}>Add</Button>
+                  <Button onClick={this.onCloseEdit}>Close</Button>
+                </Modal.Footer>
+            </Modal>
+
 
              <div className="content-wrapper">
-               <LineChart 
+              <AtlasGrid idProperty='label'
+                        title="Users"
+                        dataSource={getData}
+                        columns={columns}
+                        style={{margin: 10}}
+                        bottomToolBar={<AtlasMaintainToolbar  onAdd={this.onAdd} 
+                                                              onEdit={this.onEdit}
+                                                              canBeDeleted={ (r) => true}/>}/>
+                        { /* 
+
+               <LineChart                   
                   data={data} 
                   key={0} 
                   title="WOB vs Depth" 
@@ -101,7 +169,7 @@ var AtlasPivot = React.createClass({
                   xLabel="Depth"
                   yLabel="WOB"
                   />
-
+  */}       
               	<Col xs={10}> 
                   <TransitionGroup component="div" transitionName="example">
                     <RouteHandler state={this.state} key={name}/>
@@ -112,6 +180,18 @@ var AtlasPivot = React.createClass({
             </div>
         </div>
       );
+  },
+  onCloseAdd: function() {
+    this.setState({ showAdd: false});
+  }, 
+  onCloseEdit: function() {
+    this.setState({ showEdit: false});
+  },
+  onEdit: function(record) {
+    this.setState({ showEdit: true, label: record.label});
+  },
+  onAdd: function() {
+    this.setState({showAdd: true});
   },
    _onChange: function() {
     	this.setState(getPivotState());

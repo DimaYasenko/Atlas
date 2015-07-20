@@ -10,7 +10,7 @@ var AtlasSideBarMenu = React.createClass({
             <li className="header">MAIN NAVIGATION</li>
             <li className="treeview">
               <a href="#">
-                <i className="fa fa-dashboard"></i> <span>Dashboard</span> <i className="fa fa-angle-left pull-right"></i>
+                <i className="fa fa-user"></i> <span>Users</span> <i className="fa fa-angle-left pull-right"></i>
               </a>
               <ul className="treeview-menu">
                 <li><a href="../index.html"><i className="fa fa-circle-o"></i> Dashboard v1</a></li>

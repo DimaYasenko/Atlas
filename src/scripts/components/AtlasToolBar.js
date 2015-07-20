@@ -2,7 +2,9 @@
 
 var React = require('react/addons');
 
-require('styles/AtlasToolBar.css');
+require('styles/AtlasToolBar-Layout.css');
+require('styles/AtlasToolBar-Default.css');
+
 var ReactBootstrap = require('react-bootstrap'),
 	{ Col, Button, Panel } = ReactBootstrap;
 
@@ -15,7 +17,7 @@ import AtlasToolBarMenu from './AtlasToolBarMenu';
   Содержит наиболее часто используемые действия, к-ые потенциально нужны на каждой странице.
 
 */
-var PivotToolBar = React.createClass({
+var AtlasToolBar = React.createClass({
   propTypes: {
     isCollapsed: React.PropTypes.bool, 
     isFixed: React.PropTypes.bool,
@@ -30,20 +32,15 @@ var PivotToolBar = React.createClass({
       smallLogoText: 'Atlas'
     };
   },
-  render: function () {
-    var navStyle = {
-        marginLeft: 230,
-        marginBottom: 0       
-    };
-
+  render: function () {    
     return (
-        <header className="main-header PivotToolBar">
+        <header className="AtlasToolBar">
           <Logo 
             isSmall={this.props.isCollapsed}
             largeLogoText={this.props.largeLogoText}
             smallLogoText={this.props.smallLogoText}
           />
-          <nav className="navbar navbar-static-top" role="navigation" style={navStyle}>
+          <nav className="AtlasToolBar-Nav navbar navbar-static-top" role="navigation">
             <SideBarToggleButton />
             <AtlasToolBarMenu />
           </nav>
@@ -52,5 +49,5 @@ var PivotToolBar = React.createClass({
   }
 });
 
-module.exports = PivotToolBar; 
+module.exports = AtlasToolBar; 
 

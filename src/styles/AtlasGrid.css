@@ -1,0 +1,70 @@
+.AtlasGrid {
+	font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	background: white;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.19), 0 6px 10px rgba(0, 0, 0, 0.23);
+  	border-radius: 2px;
+  	position: relative;
+}
+.AtlasGrid-Header {
+	line-height: 1.1;
+	padding: 1px 0 0 12px;
+	margin-bottom: -10px;
+}
+.react-datagrid.z-style-alternate .z-row.z-even {
+	background-color: rgb(255, 255, 255);
+}
+.react-datagrid.z-style-alternate .z-row.z-odd
+ {
+	background-color: rgb(250, 250, 250);
+	
+}
+.react-datagrid.z-style-alternate .z-row:hover
+ {
+	background-color: rgb(245, 245, 245) !important;
+}
+.react-datagrid .z-row.z-selected {
+	background-color: #c4dbfc !important; 
+}
+.react-datagrid .z-row.z-selected:hover {
+	background-color: #c4dbfc !important; 
+}
+
+
+.react-datagrid .z-cell {
+	border-left: 1px solid #eee;
+}
+.react-datagrid .z-cell.z-first {
+	border-left: 0;
+}
+.react-datagrid .z-row {
+	border-bottom: 1px solid #eee;
+}
+
+.react-datagrid.z-with-column-menu .z-column-header .z-show-filter, .react-datagrid.z-with-column-menu .z-column-header .z-show-menu {
+	display: block;
+}
+
+
+
+.react-datagrid .z-header .z-column-header {
+	border-top: 1px solid #a8a8a8;
+	border-bottom: 1.5px solid #a8a8a8;
+	border-left: 1px solid #a8a8a8;
+	border-left: 1px solid #a8a8a8;
+	background-color: rgb(245, 245, 245);
+
+}
+ .react-datagrid-pagination-toolbar {
+ 	background-color: white;
+ }
+
+ .z-show-menu svg polygon {
+ 	fill: gray !important;
+ }
+
+ .AtlasGrid-Bottom-Toolbar .fa {
+	font-size: medium;
+ }
+ .AtlasGrid-Bottom-Toolbar {
+ 	padding: 10px;
+ }

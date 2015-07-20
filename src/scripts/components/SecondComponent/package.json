@@ -1,8 +1,8 @@
 {
-  "name": "atlas-firstcomponent",
-  "version": "0.0.2",
-  "description": "Just component for the test",
-  "main": "FirstComponent.jsx",
+  "name": "atlas-secondcomponent",
+  "version": "0.0.1",
+  "description": "Component with dependencies",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,14 +10,13 @@
     "type": "git",
     "url": "https://github.com/DimaYasenko/AtlasUI.git"
   },
-  "keywords": [
-    "jsx",
-    "reactjs"
-  ],
   "author": "Alexander Rudy",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/DimaYasenko/AtlasUI/issues"
   },
-  "homepage": "https://github.com/DimaYasenko/AtlasUI"
+  "homepage": "https://github.com/DimaYasenko/AtlasUI",
+  "dependencies": {
+    "atlas-firstcomponent": "0.0.2"
+  }
 }

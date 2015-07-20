@@ -1,0 +1,20 @@
+.SideBarToggleButton {
+  float: left;
+  background-color: transparent;
+  background-image: none;
+  padding: 15px 15px;
+  font-family: fontAwesome;
+}
+
+.SideBarToggleButton:before {
+  content: "\f0c9";
+}
+
+.SideBarToggleButton:hover {
+  color: #fff;
+}
+
+.SideBarToggleButton:focus,
+.SideBarToggleButton:active {
+  background: transparent;
+}
