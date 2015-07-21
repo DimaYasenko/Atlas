@@ -56,14 +56,14 @@ var AtlasMaintainToolbar = React.createClass({
 			  		<span>Add</span></button>
 			  <button 	type="button"
 			  			className="btn btn-default"
-			  			onClick={this.props.onEdit.bind(this, this.props.selectedRecord)}
+			  			onClick={this.props.onEdit.bind(this, copy(this.props.selectedRecord))}
 			  			disabled={!canBeEdited(this.props.selectedRecord)} >
 			  		<i className="fa fa-pencil"/>&nbsp;
 			  		<span>Edit</span>
 			  </button>
 			  <button 	type="button" 
 			  			className="btn btn-default" 
-			  			onClick={onDelete.bind(this, this.props.selectedRecord)}
+			  			onClick={onDelete.bind(this, copy(this.props.selectedRecord))}
 			  			disabled={!canBeDeleted(this.props.selectedRecord)}>
 			  		<i className="fa fa-trash-o" style={{color:'red'}}/>&nbsp;
 			  		<span>Delete</span>
@@ -72,5 +72,11 @@ var AtlasMaintainToolbar = React.createClass({
 	}
 });
 
-
+function copy (obj) {
+	var cpy = {};
+	for (var i in obj) {
+		cpy[i] = obj[i];
+	}
+	return cpy;
+}
 module.exports = AtlasMaintainToolbar;

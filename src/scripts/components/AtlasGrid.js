@@ -25,17 +25,33 @@ var AtlasGrid = React.createClass({
 	},
 	componentDidMount: function() {
 		var innerGrid = React.findDOMNode(this.refs.innerGrid);
+		console.log(this.refs.innerGrid);
 		var loadMask = innerGrid.querySelector('.loadmask');
 		var dataGrid = React.findDOMNode(this.refs.dataGrid);
 		dataGrid.appendChild(loadMask);
+
+		
 	},
  	render: function () {
- 		var toolBar = React.cloneElement(this.props.bottomToolBar, {selectedRecord: this.state.selectedRecord });
- 		var selectedRecord = this.state.selectedRecord,
- 			selectedId = this.state.selectedId;
+ 		
+ 		var selectedId = this.state.selectedId,
+ 			selectedRecord = this.state.selectedRecord;
 
+		// if (this.refs.innerGrid) {
+ 	// 		// var data = this.refs.innerGrid.data;
+ 	// 		selectedId = null;
+ 	// 		selectedRecord = null;
+		// 	// for (var i = 0; i < data.length; i++) {
+		// 	// 	if (data[i][this.props.idProperty] == this.state.selectedId) {
+		// 	// 		selectedId = this.state.selectedId;
+		// 	// 		selectedRecord = this.state.selectedRecord;
+		// 	// 		debugger;
+		// 	// 	}				
+		// 	// }
+		// }
 
-
+		var toolBar = React.cloneElement(this.props.bottomToolBar, {selectedRecord: selectedRecord });
+ 		
 	 	return (<div 	className="AtlasGrid"
  						ref="dataGrid"
 	 				 	style={this.props.style || {}}>
@@ -51,8 +67,7 @@ var AtlasGrid = React.createClass({
 						        paginationToolbarProps={{
 						          showPageSize: false
 						        }}  
-						        onColumnResize={this.onColumnResize}						        
-						        onDataSourceSuccess={this.onSuccess}                    
+						        onColumnResize={this.onColumnResize}						        						                          
 						        emptyText={'No records'}
 						        style={{minHeight: 350, padding: 10}} />
 			        <div className="AtlasGrid-Bottom-Toolbar">
@@ -67,6 +82,9 @@ var AtlasGrid = React.createClass({
 	    firstCol.width = firstSize;
 		this.setState({});
 	},
+	reload: function() {
+		this.refs.innerGrid.reload();
+	}
 });
 
 module.exports = AtlasGrid;

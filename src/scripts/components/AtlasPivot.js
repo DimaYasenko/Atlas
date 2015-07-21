@@ -36,9 +36,8 @@ var ThemeManager = new mui.Styles.ThemeManager();
 
 import CustomerBoard from 'components/CustomerBoard';
 import CustomerMain from 'components/CustomerMain';
-import AtlasGrid from 'components/AtlasGrid';
+import AccountGrid from 'components/AccountGrid';
 import promises from '../helpers/promises';
-import AtlasMaintainToolbar from 'components/AtlasMaintainToolbar';
 
 var key = 1;
 
@@ -86,81 +85,20 @@ var AtlasPivot = React.createClass({
       });
     }
 
-    function getData(params) {
-      console.log(params);
-      console.log(data.slice(params.skip, params.skip + params.pageSize));
-      return promises
-              .delay(1500)
-              .then(() => { return {count: data.length, data: data.slice(params.skip, params.skip + params.pageSize)}});
-    }
+    
 
-      var columns = [
-      {
-        name: 'label'
-      },
-      {
-        name: 'data'        
-      }, {
-        name: 'Some',
-        render: function(value, data) {
-          return 'Test ' + data.label;
-        }
-      }];      
+       
     return ( 
         <div className="AtlasPivot skin-red-light">         
           <div className="wrapper">
         	   <AtlasToolBar />
           	 <AtlasSideBar/>
-              <Modal show={this.state.showAdd} >
-                <Modal.Header closeButton>
-                  <Modal.Title>Add</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                  <Input  type="text"
-                          label="Label"/>
-                  <Input  type="text"
-                          label="Data"/>
-                  <Input  type="text"
-                          label="Some"/>
-                </Modal.Body>
-                <Modal.Footer>
-                  <Button onClick={this.onCloseAdd}>Add</Button>
-                  <Button onClick={this.onCloseAdd}>Close</Button>
-                </Modal.Footer>
-            </Modal>
-
-
-            <Modal show={this.state.showEdit} >
-                <Modal.Header closeButton>
-                  <Modal.Title>Edit</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                  <Input  type="text"
-                          label="Label"
-                          value={this.state.label}/>
-                  <Input  type="text"
-                          label="Data"/>
-                  <Input  type="text"
-                          label="Some"/>
-                </Modal.Body>
-                <Modal.Footer>
-                  <Button onClick={this.onCloseAdd}>Add</Button>
-                  <Button onClick={this.onCloseEdit}>Close</Button>
-                </Modal.Footer>
-            </Modal>
-
+             
 
              <div className="content-wrapper">
-              <AtlasGrid idProperty='label'
-                        title="Users"
-                        dataSource={getData}
-                        columns={columns}
-                        style={{margin: 10}}
-                        bottomToolBar={<AtlasMaintainToolbar  onAdd={this.onAdd} 
-                                                              onEdit={this.onEdit}
-                                                              canBeDeleted={ (r) => true}/>}/>
-                        { /* 
-
+              <AccountGrid />
+             
+{/*
                <LineChart                   
                   data={data} 
                   key={0} 
