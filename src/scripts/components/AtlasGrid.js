@@ -11,11 +11,16 @@ import DataGrid from 'react-datagrid';
 
 var AtlasGrid = React.createClass({
 	propTypes: {
-		bottomToolBar: React.PropTypes.element
+		bottomToolBar: React.PropTypes.element,
+		onRefresh: React.PropTypes.func
 	},
 	getDefaultProps: function() {
 		return {
-			bottomToolBar: {}
+			bottomToolBar: null,
+			onRefresh: () =>{},
+			page: 1,
+			count: 0,
+			dataSource: []
 		};
 	},
 	getInitialState: function() {
@@ -25,33 +30,30 @@ var AtlasGrid = React.createClass({
 	},
 	componentDidMount: function() {
 		var innerGrid = React.findDOMNode(this.refs.innerGrid);
-		console.log(this.refs.innerGrid);
 		var loadMask = innerGrid.querySelector('.loadmask');
 		var dataGrid = React.findDOMNode(this.refs.dataGrid);
-		dataGrid.appendChild(loadMask);
 
+		dataGrid.appendChild(loadMask);
 		
+		dataGrid.querySelector('svg[name=refresh]').addEventListener('click', this.props.onRefresh);
+
+	},
+	componentWillUnmount: function() {
+		var dataGrid = React.findDOMNode(this.refs.dataGrid);
+
+		dataGrid.querySelector('svg[name=refresh]').removeEventListener('click', this.props.onRefresh);
+
 	},
  	render: function () {
- 		
  		var selectedId = this.state.selectedId,
  			selectedRecord = this.state.selectedRecord;
 
-		// if (this.refs.innerGrid) {
- 	// 		// var data = this.refs.innerGrid.data;
- 	// 		selectedId = null;
- 	// 		selectedRecord = null;
-		// 	// for (var i = 0; i < data.length; i++) {
-		// 	// 	if (data[i][this.props.idProperty] == this.state.selectedId) {
-		// 	// 		selectedId = this.state.selectedId;
-		// 	// 		selectedRecord = this.state.selectedRecord;
-		// 	// 		debugger;
-		// 	// 	}				
-		// 	// }
-		// }
+ 		console.log("Atlas Grid");
+ 		console.log(this.props.bottomToolBar);
+		var toolBar = this.props.bottomToolBar? React.cloneElement(this.props.bottomToolBar, {selectedRecord: selectedRecord })
+												: (<span />); 		
 
-		var toolBar = React.cloneElement(this.props.bottomToolBar, {selectedRecord: selectedRecord });
- 		
+		console.log(toolBar);
 	 	return (<div 	className="AtlasGrid"
  						ref="dataGrid"
 	 				 	style={this.props.style || {}}>
@@ -65,7 +67,11 @@ var AtlasGrid = React.createClass({
 						        pageSize={10}
 						        selected={selectedId}
 						        paginationToolbarProps={{
-						          showPageSize: false
+						          showPageSize: false,
+						          page: this.props.page,
+						          minPage: 1,
+						          maxPage: Math.floor(this.props.totalCount / 10) + 1,
+						          dataSourceCount: this.props.totalCount
 						        }}  
 						        onColumnResize={this.onColumnResize}						        						                          
 						        emptyText={'No records'}
@@ -73,16 +79,27 @@ var AtlasGrid = React.createClass({
 			        <div className="AtlasGrid-Bottom-Toolbar">
 			        	{toolBar }
 		        	</div>
+
 	        </div>);
 	},
+	
 	onSelection: function(newSelectedId, data) {		
-	    this.setState({selectedId: newSelectedId, selectedRecord: newSelectedId === null? null: data});
+		console.log('selection');
+		console.log(data);
+	    this.setState({
+	    	selectedId: newSelectedId, 
+	    	selectedRecord: newSelectedId === null? null: data
+	    });
 	},
 	onColumnResize: function(firstCol, firstSize, secondCol, secondSize){
 	    firstCol.width = firstSize;
 		this.setState({});
 	},
 	reload: function() {
+		this.setState({ 
+			selectedId: null,
+			selectedRecord: null
+		});
 		this.refs.innerGrid.reload();
 	}
 });

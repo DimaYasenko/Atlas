@@ -1,0 +1,54 @@
+Admins:
+	id
+	Login (readonly)
+	Password
+	Email
+=
+	Add 
+	Delete (only if it is not the last admin)
+	Update (email)
+	Reset Password
+
+Tenants:
+	id
+	Login
+	Password
+	Email
+	Name
+	isActive
+	Exp Date
+
+=	Add, Delete, Update
+	Reset Password
+	Enable/Disable
+
+
+Employees:
+	id
+	Login
+	Password
+	Email
+	isActive
+	Exp Date
+	FirstName
+	LastName
+= 	Add, Delete, Update
+	Reset Password
+	Enable/Disable
+
+Registered Requests:
+	id
+	CompanyName
+	Login
+	Email
+	AboutUs
+	Date
+	Status ( 	Pending -> Accepted
+				Pending -> Rejected)
+
+=	Reject
+	Accept ( Accept -> New Tenant)
+	Send Mail
+
+
+	

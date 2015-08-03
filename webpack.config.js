@@ -19,7 +19,7 @@ module.exports = {
   devtool: false,
   entry: [
       'webpack/hot/only-dev-server',
-      './src/scripts/components/AtlasPivot.js'
+      './src/scripts/components/AtlasApp.js'
   ],
 
   stats: {
@@ -32,7 +32,11 @@ module.exports = {
     extensions: ['', '.js'],
     alias: {
       'styles': '../../../src/styles',
-      'components': '../../../src/scripts/components/'
+      'components': '../../../src/scripts/components/',
+      'stores': '../../../src/scripts/stores/',
+      'actions': '../../../src/scripts/actions/',
+      'helpers': '../../../src/scripts/helpers/',
+      'api': '../../../src/scripts/api/'
     }
   },
   module: {

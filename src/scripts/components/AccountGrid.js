@@ -5,7 +5,10 @@
 import React from 'react/addons';
 
 import AtlasGrid from 'components/AtlasGrid';
+
 import AtlasMaintainToolbar from 'components/AtlasMaintainToolbar';
+import AtlasModal from 'components/AtlasModal';
+
 import promises from '../helpers/promises';
 import {Modal, Button, Input, ButtonInput, ButtonToolbar } from 'react-bootstrap';
 
@@ -19,28 +22,30 @@ var data = [];
       });
     }
 
-function getData(params) {
-      console.log(params);
-      console.log(data.slice(params.skip, params.skip + params.pageSize));
+function getData(params) {      
       return promises
               .delay(1500)
-              .then(() => { return {count: data.length, data: data.slice(params.skip, params.skip + params.pageSize)}});
+              .then(() => { return {count: data.length, data: data.slice(params.skip, params.skip + params.pageSize)};});
 }
 
 
+function  doNothing() {}
+
 
 var AccountGrid = React.createClass({
-	getInitialState: function() {
+	getInitialState: function() {	
 		return {
 			modalForm: null,
 			selectedRecord: null
 		};
 	},
 	render: function () {
+
 		var columns = [
-	      {
-	        name: 'id'
-	      },
+	      // {
+	      //   name: 'id',
+	      //   width: 50
+	      // },
 	      {
 	      	name: 'login'
 	      },
@@ -74,37 +79,20 @@ var AccountGrid = React.createClass({
 													onChange={this.onCheckboxChange.bind(this, 'locked')}/>
 				                    </div>): (<span />),
 
-			addModalForm =  this.state.modalForm == 'add'? (<form>
-								<Modal 	show={true}
-										onHide={closeAdd}>
-				                <Modal.Header closeButton>
-				                  <Modal.Title>Add Account</Modal.Title>
-				                </Modal.Header>
-				                <Modal.Body>
-				                	{fillForm}
-				                </Modal.Body>
-				                <Modal.Footer>
-					                  <Button  	bsStyle='primary'
-					                  			onClick={this.onAddAccount.bind(this, this.state.selectedRecord)}>OK</Button >
-					                  <Button 	onClick={closeAdd}>Close</Button>
-				                </Modal.Footer>
-				            </Modal>
-				            </form>): (<span/>),
+			addModalForm =  this.state.modalForm === 'add'? 
+								(<AtlasModal title="Add User"
+											onClose={closeAdd}
+											onOK={this.onAddAccount.bind(this, this.state.selectedRecord)}>								
+											{fillForm}
+								</AtlasModal>): (<span/>),
 
-			editModalForm = this.state.modalForm == 'edit'? (<Modal show={true}
-									onHide={closeEdit}>
-				                <Modal.Header closeButton>
-				                  <Modal.Title>Edit Account</Modal.Title>
-				                </Modal.Header>
-				                <Modal.Body>
-				                  {fillForm}
-				                </Modal.Body>
-				                <Modal.Footer>
-				                  <Button 	bsStyle='primary'
-				                  			onClick={this.onEditAccount.bind(this, this.state.selectedRecord)}>OK</Button>
-				                  <Button onClick={closeEdit}>Close</Button>
-				                </Modal.Footer>
-				            </Modal>): (<span />),
+			editModalForm = this.state.modalForm === 'edit'? 
+							(<AtlasModal 	title="Edit User"
+											onClose={closeEdit}
+											onOK={this.onEditAccount.bind(this, this.state.selectedRecord)}>
+								{fillForm}
+							</AtlasModal>
+				            ): (<span />),
 
 			bottomToolBar = (<AtlasMaintainToolbar  onAdd={showAdd} 
                                                   	onEdit={showEdit}
@@ -163,7 +151,7 @@ var AccountGrid = React.createClass({
 		this.refs.grid.reload();
 	},
 	onEditAccount: function(selected) {
-		data = data.map(d => d.id != selected.id? d: {
+		data = data.map(d => d.id !== selected.id? d: {
 			id: selected.id,
 			login: selected.login,
 			email: selected.email,
@@ -177,7 +165,7 @@ var AccountGrid = React.createClass({
 		this.refs.grid.reload();
 	},
 	onDeleteAccount: function(selected) {
-		data = data.filter(d => d.id != selected.id);
+		data = data.filter(d => d.id !== selected.id);
 		this.refs.grid.reload();
 		this.setState({
 			modalForm: null,
@@ -187,6 +175,6 @@ var AccountGrid = React.createClass({
 	}
 });
 
-function  doNothing() {}
+
 
 module.exports = AccountGrid;

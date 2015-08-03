@@ -42,3 +42,9 @@
   margin-right: 10px;
   margin-top: 3px;
 }
+
+.AtlasSideBarMenu a.active {
+  background: #337ab7;
+  border-radius: 6px;
+  color: white;
+}

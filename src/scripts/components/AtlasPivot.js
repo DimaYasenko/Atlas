@@ -38,8 +38,53 @@ import CustomerBoard from 'components/CustomerBoard';
 import CustomerMain from 'components/CustomerMain';
 import AccountGrid from 'components/AccountGrid';
 import promises from '../helpers/promises';
+import Flux from 'helpers/Flux';
+import adminAPI from 'api/admin';
 
 var key = 1;
+
+var buttonClicks = Flux.store({
+  count: 0
+});
+
+function state([buttonStore]) {
+  return {
+    count:  buttonStore.count
+  };
+}
+
+var btnActions = {
+  inc: function() {
+    
+    buttonClicks.set({
+      count: buttonClicks.get().count + 1
+    });
+
+  },
+  dec: function() {
+    buttonClicks.set({
+      count: buttonClicks.get().count - 1
+    });
+  }
+};
+
+var Component = React.createClass({
+  mixins: [Flux.mixin([buttonClicks], state)],
+  getInitialState: function() {
+    return {
+      test: 1
+    };
+  },  
+  render: function() {
+    return (<div>
+        <span>{this.state.count}</span>
+        <button onClick={btnActions.inc}>Inc</button>
+        <button onClick={btnActions.dec}>Dec</button>
+        </div>
+    );
+  }
+});
+
 
 function getPivotState() {
 	return PivotStore.getAll();  
@@ -56,7 +101,7 @@ function randomValues () {
   return data;
 }
 var AtlasPivot = React.createClass({
-  childContextTypes: {
+    childContextTypes: {
       muiTheme: React.PropTypes.object
     },
 
@@ -96,6 +141,7 @@ var AtlasPivot = React.createClass({
              
 
              <div className="content-wrapper">
+              <Component />
               <AccountGrid />
              
 {/*
