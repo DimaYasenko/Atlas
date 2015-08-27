@@ -84,13 +84,11 @@ export default {
 	addAdmin: function(admin) {
 		return promises.delay(2000)
 						.then(_ => {
-							debugger;
 							admins.push(assign({ }, {id: admins[admins.length - 1].id + 1}, admin));
 						})
 						.then(success);
 	},
 	editAdmin: function(admin) {
-		debugger;
 		return promises.delay(2000)
 						.then(_ => {
 							admins = admins.map(d => d.id !== admin.id? d: {
@@ -99,6 +97,14 @@ export default {
 								email: admin.email,
 								locked: admin.locked
 							});
+						})
+						.then(success);
+	},
+	deleteAdmin: function(id) {
+		return promises.delay(1000)
+						.then(_ => {
+							debugger;
+							admins = admins.filter(a => a.id !== id);
 						})
 						.then(success);
 	}

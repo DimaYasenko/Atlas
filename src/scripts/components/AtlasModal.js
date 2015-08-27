@@ -15,21 +15,36 @@ var AtlasModal = React.createClass({
 		title: React.PropTypes.any,
 		onOK: React.PropTypes.func,
 		onClose: React.PropTypes.func,
-		loading: React.PropTypes.bool
+		loading: React.PropTypes.bool,
+		invalid: React.PropTypes.bool,
+		complexValidation: React.PropTypes.func
 	},
 	getDefaultProps: function() {
 		return {
 			title: '',
 			onOK: doNothing,
 			onClose: _ => true,
-			loading: false
+			loading: false,
+			invalid: false,
+			complexValidation: _ => true
 		};
 	},
 	render: function() {
 		var onClose = function() {
 			if (this.props.loading) return false;
 			return this.props.onClose();
-		}.bind(this);		
+		}.bind(this);	
+		var onOK = function() {			
+			return !this.props.complexValidation() && this.props.onOK();
+		}.bind(this);
+
+		var complexError = this.props.complexValidation();
+		
+		var errorBox = complexError? (<div className="alert alert-danger" role="alert">
+										<span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true" />&nbsp;
+										{complexError}</div>)
+													: (<div></div>);
+				
 		return (<Modal 	show={true}
 						onHide={onClose}
 						className="AtlasModal loading">
@@ -39,13 +54,14 @@ var AtlasModal = React.createClass({
 		                <Modal.Body>
 		                	
 	                		{this.props.children}
+	                		{errorBox}          		
 	                		{this.props.loading? <LoadMask />: <span />}
 		                	
 		                </Modal.Body>
 		                <Modal.Footer>
 			                  <Button  	bsStyle='primary'
-			                  			disabled={this.props.loading}
-			                  			onClick={this.props.onOK}>OK</Button >
+			                  			disabled={this.props.loading || this.props.invalid}
+			                  			onClick={onOK}>OK</Button >
 			                  <Button 	onClick={onClose}
 			                  			disabled={this.props.loading}>Close</Button>
 		                </Modal.Footer>

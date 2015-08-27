@@ -16,6 +16,15 @@ function getState(admins) {
 	return admins;
 }
 
+var validators = {
+	email: function(value) {
+		if (value.length > 4) {
+			return "Value should be less than 4";
+		}
+		return false;
+	}
+};
+
 export default React.createClass({
 	// mixins: [Flux.mixin([AdminStore], getState)],
 	getInitialState: function() {
@@ -43,6 +52,7 @@ export default React.createClass({
 	},	
 	render: function() {
 		console.log("Admin Grid");
+
 		var columns = [
 	      {
 	      	name: 'login'
@@ -56,22 +66,49 @@ export default React.createClass({
 	    	showAdd = this.changeVisibilityAddForm.bind(this, true),
 	    	showEdit = this.changeVisibilityEditForm.bind(this, true);
 
+	    var validationStatus = function(p) {
+	    		if (!this.state.selectedRecord) return;
+				return validators[p](this.state.selectedRecord[p])? 'error': '';
+		    }.bind(this),
+		    errorMessage = function(p) {
+		    	if (!this.state.selectedRecord) return;
+		    	return validators[p](this.state.selectedRecord[p]) ;
+		    }.bind(this)
+
+	
+		var complexValidation = function() {	
+			if (!this.state.selectedRecord) return;
+
+			if (this.state.selectedRecord.email.length !== 3) return "Email's length should be equel 3";
+			return false;
+
+		}.bind(this);
+
+		var props = ['email'];
+		if (!!this.state.modalForm) {
+			var errors = props.map(p => validationStatus(p) == 'error'),
+			anyError = errors.some(a => !!a) || complexValidation();
+			debugger;
+		}
+		
 	    var fillForm = !!this.state.modalForm ? (<div>
 	    									<Input  type="text"
-													label="Login"
+													label={<span><span style={{color: 'red'}}>*&nbsp;</span>Login</span>}
 													disabled={this.state.modalForm === 'edit'}
-													value={this.state.selectedRecord.login}
+													value={this.state.selectedRecord.login}																									
 													onChange={this.onChange.bind(this, 'login')}/>
 
 											{this.state.modalForm === 'add' ? (<Input  type="password"
 													label="Password"
 													hidden={this.state.modalForm === 'edit'}
-													value={this.state.selectedRecord.password}
+													value={this.state.selectedRecord.password}													
 													onChange={this.onChange.bind(this, 'password')}/>)
 												: (<span />) }
 															
 											<Input  type="text"
 													label="Email"
+													bsStyle={validationStatus('email')}
+													help={errorMessage('email')}
 													value={this.state.selectedRecord.email}
 													onChange={this.onChange.bind(this, 'email')}/>
 											
@@ -79,21 +116,22 @@ export default React.createClass({
 
 			addModalForm =  this.state.modalForm === 'add'? 
 								(<AtlasModal title="Add Admin"
-											onClose={closeAdd}
+											onClose={closeAdd}											
 											loading={this.state.modalLoading}
+											invalid={anyError}
+											complexValidation={complexValidation}
 											onOK={this.onAddAdmin.bind(this, this.state.selectedRecord)}>								
-											{fillForm}
-											<div className="alert alert-danger" role="alert">
-												<span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-												Timeout. Please retry</div>
+											{fillForm}											
 								</AtlasModal>): (<span/>),
 
 			editModalForm = this.state.modalForm === 'edit'? 
 							(<AtlasModal 	title="Edit Admin"
 											loading={this.state.modalLoading}
+											invalid={anyError}
+											complexValidation={complexValidation}											
 											onClose={closeEdit}
 											onOK={this.onEditAdmin.bind(this, this.state.selectedRecord)}>
-								{fillForm}
+								{fillForm}								
 							</AtlasModal>
 				            ): (<span />),
 
@@ -139,6 +177,7 @@ export default React.createClass({
 		});
 	},
 	onChange: function(prop, e) {
+		
 		this.state.selectedRecord[prop] = e.target.value;
 
 		this.setState({
@@ -178,13 +217,8 @@ export default React.createClass({
 		}, this.onSuccess);		
 	},
 	onDeleteAdmin: function(selected) {
-		// data = data.filter(d => d.id !== selected.id);
-		// this.refs.grid.reload();
-		// this.setState({
-		// 	modalForm: null,
-		// 	selectedRecord: null
-		// });
-
+		debugger;
+		UsersActions.deleteAdmin(selected.id, this.onSuccess);
 	},
 	onPageChange: function(page) {
 		UsersActions.getAdmins({

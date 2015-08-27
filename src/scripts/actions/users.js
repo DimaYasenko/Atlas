@@ -35,6 +35,16 @@ export default {
 					.then(success, onFail)
 					.catch(log);
 	},
+	deleteAdmin: function(id, onSuccess, onFail) {
+		var success = function(res) {
+			if (onSuccess) onSuccess(res);
+			return this.getAdmins();			
+		}.bind(this);
+
+		return adminApi.deleteAdmin(id).
+			then(success, onFail)
+			.catch(log);
+	},
 	generatePassword: function() {
 		
 	}
