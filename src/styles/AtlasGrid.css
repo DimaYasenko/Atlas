@@ -1,8 +1,9 @@
 .AtlasGrid {
 	font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	background: white;
-	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.19), 0 6px 10px rgba(0, 0, 0, 0.23);
+	/*box-shadow: 0 10px 30px rgba(0, 0, 0, 0.19), 0 6px 10px rgba(0, 0, 0, 0.23);*/
   	border-radius: 2px;
+  	border: 1px solid rgba(0, 0, 0, 0.19);
   	position: relative;
 }
 .AtlasGrid-Header {

@@ -17,7 +17,8 @@ var AtlasModal = React.createClass({
 		onClose: React.PropTypes.func,
 		loading: React.PropTypes.bool,
 		invalid: React.PropTypes.bool,
-		complexValidation: React.PropTypes.func
+		complexError: React.PropTypes.string,
+		visible: React.PropTypes.bool
 	},
 	getDefaultProps: function() {
 		return {
@@ -26,7 +27,7 @@ var AtlasModal = React.createClass({
 			onClose: _ => true,
 			loading: false,
 			invalid: false,
-			complexValidation: _ => true
+			visible: true			
 		};
 	},
 	render: function() {
@@ -35,17 +36,16 @@ var AtlasModal = React.createClass({
 			return this.props.onClose();
 		}.bind(this);	
 		var onOK = function() {			
-			return !this.props.complexValidation() && this.props.onOK();
+			return this.props.onOK();
 		}.bind(this);
 
-		var complexError = this.props.complexValidation();
-		
-		var errorBox = complexError? (<div className="alert alert-danger" role="alert">
+				
+		var errorBox = this.props.complexError? (<div className="alert alert-danger" role="alert">
 										<span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true" />&nbsp;
-										{complexError}</div>)
+										{this.props.complexError}</div>)
 													: (<div></div>);
 				
-		return (<Modal 	show={true}
+		return (<Modal 	show={this.props.visible}
 						onHide={onClose}
 						className="AtlasModal loading">
 		                <Modal.Header closeButton>
@@ -89,6 +89,14 @@ var AtlasModal = React.createClass({
 				return (<AtlasModal 	title="Confirm?"
 										{...this.props}>
 							<div className="alert alert-warning" role="alert"><i className="fa fa-exclamation-triangle" style={{fontSize: 'large'}} />&nbsp;{this.props.children}</div>
+						</AtlasModal>);
+			}
+		}),
+		Success: React.createClass({
+			render: function() {
+				return (<AtlasModal 	title="Notification"
+										{...this.props}>
+							<div className="alert alert-success" role="alert"><i className="fa fa-check-circle" style={{fontSize: 'large'}} />&nbsp;{this.props.children}</div>
 						</AtlasModal>);
 			}
 		})

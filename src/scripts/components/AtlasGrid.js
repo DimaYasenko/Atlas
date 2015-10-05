@@ -10,6 +10,11 @@ import DataGrid from 'react-datagrid';
 
 
 var AtlasGrid = React.createClass({
+	contextTypes: {
+      onSelectionChange: React.PropTypes.func,
+      selected: React.PropTypes.any
+    },
+
 	propTypes: {
 		bottomToolBar: React.PropTypes.element,
 		onRefresh: React.PropTypes.func
@@ -20,7 +25,8 @@ var AtlasGrid = React.createClass({
 			onRefresh: () =>{},
 			page: 1,
 			count: 0,
-			dataSource: []
+			dataSource: [],
+			totalCount: 0
 		};
 	},
 	getInitialState: function() {
@@ -48,24 +54,25 @@ var AtlasGrid = React.createClass({
  		var selectedId = this.state.selectedId,
  			selectedRecord = this.state.selectedRecord;
 
- 		console.log("Atlas Grid");
- 		console.log(this.props.bottomToolBar);
 		var toolBar = this.props.bottomToolBar? React.cloneElement(this.props.bottomToolBar, {selectedRecord: selectedRecord })
 												: (<span />); 		
 
-		console.log(toolBar);
+		var onRefresh = (e) => { e.target.getAttribute('name') == 'refresh' && this.props.onRefresh()};
+
 	 	return (<div 	className="AtlasGrid"
  						ref="dataGrid"
-	 				 	style={this.props.style || {}}>
-	 				
+	 				 	style={this.props.style || {}}
+	 				 	onClick={onRefresh}>
+	 					
 	 				<header className="AtlasGrid-Header"><h3>{this.props.title}</h3></header>
 			 		<DataGrid 	className="AtlasGrid-Inner"
+			 					
 						 		ref="innerGrid"
+						 		onSelectionChange={this.context.onSelectionChange}
+						 		selected={this.context.selected}
 						 		{...this.props}                
-						        pagination={true}        
-						        onSelectionChange={this.onSelection}
-						        pageSize={10}
-						        selected={selectedId}
+						        pagination={true}						        
+						        pageSize={10}						        
 						        paginationToolbarProps={{
 						          showPageSize: false,
 						          page: this.props.page,
@@ -76,21 +83,22 @@ var AtlasGrid = React.createClass({
 						        onColumnResize={this.onColumnResize}						        						                          
 						        emptyText={'No records'}
 						        style={{minHeight: 350, padding: 10}} />
-			        <div className="AtlasGrid-Bottom-Toolbar">
+
+			       {/*  <div className="AtlasGrid-Bottom-Toolbar">
 			        	{toolBar }
 		        	</div>
-
+					*/ }
 	        </div>);
 	},
 	
-	onSelection: function(newSelectedId, data) {		
-		console.log('selection');
-		console.log(data);
-	    this.setState({
-	    	selectedId: newSelectedId, 
-	    	selectedRecord: newSelectedId === null? null: data
-	    });
-	},
+	// onSelection: function(newSelectedId, data) {		
+	// 	console.log('selection');
+	// 	console.log(data);
+	//     this.setState({
+	//     	selectedId: newSelectedId, 
+	//     	selectedRecord: newSelectedId === null? null: data
+	//     });
+	// },
 	onColumnResize: function(firstCol, firstSize, secondCol, secondSize){
 	    firstCol.width = firstSize;
 		this.setState({});

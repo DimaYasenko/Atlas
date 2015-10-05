@@ -48,7 +48,7 @@ module.exports = {
     loaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'react-hot!babel-loader'
+      loaders: ['react-hot', 'babel-loader?optional[]=es7.asyncFunctions']
     }, {
       test: /\.css$/,
       loader: 'style-loader!css-loader'

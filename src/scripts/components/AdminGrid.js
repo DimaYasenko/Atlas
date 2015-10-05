@@ -15,13 +15,32 @@ function getState(admins) {
 
 	return admins;
 }
+//Monad?
+
+var vRequired = function(value) {
+	return value != '' || "Value is required";
+};
+
+var vNumber = function(value) {
+	return Number.isFinite(+value) || "Value should be a number";
+}
+
+var vEmail = function(value) {
+	var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    return re.test(email) || "Value should be a valid email";
+}
+
+var validatorMap = {
+	login: [vRequired],
+	email: [vRequired, vEmail]
+};
 
 var validators = {
 	email: function(value) {
 		if (value.length > 4) {
 			return "Value should be less than 4";
 		}
-		return false;
+		return true;
 	}
 };
 
@@ -66,37 +85,59 @@ export default React.createClass({
 	    	showAdd = this.changeVisibilityAddForm.bind(this, true),
 	    	showEdit = this.changeVisibilityEditForm.bind(this, true);
 
-	    var validationStatus = function(p) {
-	    		if (!this.state.selectedRecord) return;
-				return validators[p](this.state.selectedRecord[p])? 'error': '';
-		    }.bind(this),
-		    errorMessage = function(p) {
+	    var errorState = forEachProp(this.state.selectedRecord, function(value, name, record) {
+	    	// (validatorMap[name] || []).reduce(function(acc, next) { acc.push(next); return acc; } , [])
+	    });
+
+	    var errorMessage = function(p) {
 		    	if (!this.state.selectedRecord) return;
-		    	return validators[p](this.state.selectedRecord[p]) ;
-		    }.bind(this)
+		    	return validators[p] && validators[p](this.state.selectedRecord[p]) ;
+		    }.bind(this),
+
+		    validationStatus = function(p) {
+	    		if (!this.state.selectedRecord) return;
+				return errorMessage(p)? 'error': '';
+		    }.bind(this);
+		    
 
 	
 		var complexValidation = function() {	
 			if (!this.state.selectedRecord) return;
 
-			if (this.state.selectedRecord.email.length !== 3) return "Email's length should be equel 3";
+			if (this.state.selectedRecord.email.length !== 3) return "Email's length should be equal 3";
 			return false;
 
-		}.bind(this);
+		}.bind(this),
+			complexError = complexValidation();
+
 
 		var props = ['email'];
 		if (!!this.state.modalForm) {
 			var errors = props.map(p => validationStatus(p) == 'error'),
-			anyError = errors.some(a => !!a) || complexValidation();
+			anyError = errors.some(a => !!a) || complexError;
 			debugger;
 		}
 		
+		var name = function(name) {
+			return {				
+				value: this.state.selectedRecord[name],
+				onChange: function(e) {
+					this.state.selectedRecord[name] = e.target.value;
+
+					this.setState({
+						selectedRecord: this.state.selectedRecord
+					});
+				}.bind(this),
+				bsStyle: validationStatus(name),
+
+				help: errorMessage(name)
+			};
+		}.bind(this);
+
 	    var fillForm = !!this.state.modalForm ? (<div>
 	    									<Input  type="text"
 													label={<span><span style={{color: 'red'}}>*&nbsp;</span>Login</span>}
-													disabled={this.state.modalForm === 'edit'}
-													value={this.state.selectedRecord.login}																									
-													onChange={this.onChange.bind(this, 'login')}/>
+													{...name('login')}/>
 
 											{this.state.modalForm === 'add' ? (<Input  type="password"
 													label="Password"
@@ -106,11 +147,9 @@ export default React.createClass({
 												: (<span />) }
 															
 											<Input  type="text"
-													label="Email"
-													bsStyle={validationStatus('email')}
-													help={errorMessage('email')}
-													value={this.state.selectedRecord.email}
-													onChange={this.onChange.bind(this, 'email')}/>
+													label="Email"	
+													{...name('email')}			
+													/>
 											
 				                    </div>): (<span />),
 
@@ -119,7 +158,7 @@ export default React.createClass({
 											onClose={closeAdd}											
 											loading={this.state.modalLoading}
 											invalid={anyError}
-											complexValidation={complexValidation}
+											complexError={complexError}
 											onOK={this.onAddAdmin.bind(this, this.state.selectedRecord)}>								
 											{fillForm}											
 								</AtlasModal>): (<span/>),
@@ -128,7 +167,7 @@ export default React.createClass({
 							(<AtlasModal 	title="Edit Admin"
 											loading={this.state.modalLoading}
 											invalid={anyError}
-											complexValidation={complexValidation}											
+											complexError={complexError}											
 											onClose={closeEdit}
 											onOK={this.onEditAdmin.bind(this, this.state.selectedRecord)}>
 								{fillForm}								
@@ -178,11 +217,7 @@ export default React.createClass({
 	},
 	onChange: function(prop, e) {
 		
-		this.state.selectedRecord[prop] = e.target.value;
-
-		this.setState({
-			selectedRecord: this.state.selectedRecord
-		});
+		
 	},
 	onAddAdmin: function(selected) {
 
