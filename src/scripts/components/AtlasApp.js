@@ -13,6 +13,7 @@ import TenantsController from 'components/Controllers/TenantsController';
 import Users from 'components/Users';
 import AdminsController from 'components/Controllers/AdminsController';
 import EmployeesController from 'components/Controllers/EmployeesController';
+import RequestsController from 'components/Controllers/RequestsController';
 
 import Flux from 'helpers/flux';
 
@@ -41,8 +42,7 @@ var routes = (
   	   		<Redirect from="/users" to="admins"/>
 
   	   	</Route>
-  	    <Route name="registeredRequests" path="regreq" hander={AdminsController}/>
-
+        <Route name="requests" path="/requests" handler={RequestsController}/>
         <Redirect from="/" to="admins"/>
   </Route>
 );

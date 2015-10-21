@@ -15,9 +15,9 @@ var AtlasSideBarMenu = React.createClass({
                         link="users"
             />
             
-            <MenuItem label="Register Requests"
+            <MenuItem label="Requests"
                       icon="envelope"
-                      link="registeredRequests"
+                      link="requests"
             />
 
             <MenuItem label="Documentation"
